@@ -1,0 +1,27 @@
+{
+  "name": "nasaapi",
+  "version": "1.0.0",
+  "description": "Ejercicio de Back - NasaAPI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alenriquez96/NasaAPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alenriquez96/NasaAPI/issues"
+  },
+  "homepage": "https://github.com/Alenriquez96/NasaAPI#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
