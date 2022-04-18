@@ -1,4 +1,6 @@
 const landingSchema = require("./landingsSchema");
+require("mongoose");
+require("mongodb");
 
 const getAllLandings = async () => {
     try{
@@ -13,7 +15,7 @@ const getAllLandings = async () => {
 const getLandingByMass = async (minimum_mass) => {
     try{
         console.log(minimum_mass);
-        const landingByMass = await landingSchema.find({ mass:{$gt:minimum_mass}});
+        const landingByMass = await landingSchema.find({mass: {$gt:parseInt(minimum_mass)}});
         return landingByMass
     }
     catch(err){
@@ -21,10 +23,10 @@ const getLandingByMass = async (minimum_mass) => {
     }
 }
 
-const getMass = async (mass) =>{
+const getMass = async (masa) =>{
     try{
-        console.log(mass);
-        const landingMass = await landingSchema.find({mass: mass});
+        console.log(masa);
+        const landingMass = await landingSchema.find({mass: masa});
         return landingMass;            
     }
     catch{
@@ -43,12 +45,28 @@ const getClass = async (clase) => {
     }
 }
 
+const getLandingsByYears = async (years) =>{
+    try {
+        if (years.year1 && years.year2) {
+            console.log(years.year1);
+            const landingYear = await landingSchema.find({id:{"$gte": years.year1, "$lt": years.year2}});
+            return landingYear; 
+        }
+        else if(years.year1 && !years.year2){
+            const landingYear = await landingSchema.find({id:{$gte:year1}})
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 const landingDB = {
     getAllLandings,
     getLandingByMass,
     getMass,
-    getClass
+    getClass,
+    getLandingsByYears
 }
 
 module.exports = landingDB;

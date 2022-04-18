@@ -40,10 +40,25 @@ const getClass = async (req,res) =>{
     }
 }
 
+const getLandingsByYears = async (req,res)=>{
+    try {
+        const year1 =  req.params.year1;
+        const year2 = req.params.year2;
+        const years = {
+            year1:year1,
+            year2:year2} 
+        const landingYears = await landingsModel.getLandingsByYears(years);
+        res.status(200).json(landingYears);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const landingController = {
     getLandings,
     getMass,
-    getClass
+    getClass,
+    getLandingsByYears
 }
 
 module.exports = landingController
