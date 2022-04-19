@@ -1,3 +1,4 @@
+const { Double } = require("mongodb");
 const mongoose = require("../utils/mongoAtlas");
 
 
@@ -29,7 +30,7 @@ const landingSchema = new mongoose.Schema({
         required: true
     },
     year: {
-        type: Number,
+        type: String,
         required: true
     },
     reclat: {
@@ -52,6 +53,6 @@ const landingSchema = new mongoose.Schema({
     }
 });
 
-const landingModel = mongoose.model("Landing", landingSchema, "Landings");
+const landingModel = mongoose.model("landings", landingSchema);
 
 module.exports = landingModel;

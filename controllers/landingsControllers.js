@@ -1,10 +1,28 @@
 const landingsModel = require("../models/landingModel");
 
 const getLandings = async (req,res)=>{
-    try{
-        if (req.params.minimum_mass) {
-            const landingByMass = await landingsModel.getLandingByMass(req.params.minimum_mass);
+    try{    
+        if (req.query.minimum_mass) {
+            const landingByMass = await landingsModel.getLandingByMass(req.query.minimum_mass);
             res.status(200).json(landingByMass);
+        }
+        else if(req.query.from && req.query.to){
+            const years = {
+                from: req.query.from,
+                to: req.query.to
+            }
+            const landingYears = await landingsModel.getLandingsByYears(years);
+            res.status(200).json(landingYears);
+        }
+        else if(req.query.from){
+            const years={from:req.query.from}
+            const landingYearsFrom = await landingsModel.getLandingsByYearsFrom(years);
+            res.status(200).json(landingYearsFrom);
+        }       
+        else if(req.query.to){
+            const years={to:req.query.to}
+            const landingYearsTo = await landingsModel.getLandingsByYearsTo(years);
+            res.status(200).json(landingYearsTo);
         }
         else{
             const landings = await landingsModel.getAllLandings();
@@ -40,25 +58,43 @@ const getClass = async (req,res) =>{
     }
 }
 
-const getLandingsByYears = async (req,res)=>{
+const createLanding = async (req,res) =>{
     try {
-        const year1 =  req.params.year1;
-        const year2 = req.params.year2;
-        const years = {
-            year1:year1,
-            year2:year2} 
-        const landingYears = await landingsModel.getLandingsByYears(years);
-        res.status(200).json(landingYears);
+        const create= await landingsModel.createLanding(req.body);  
+        res.send("Landing created");
     } catch (error) {
         console.log(error);
     }
 }
 
+const updateLanding = async (req,res)=>{
+    try {
+        const landingId = req.params.id;
+        const update = await landingsModel.updateLanding(landingId);
+        res.send("Landing updated")
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const deleteLanding = async (req,res)=>{
+    try {
+        const deleteById = req.params.id;
+        await landingsModel.deleteLanding(deleteById);
+        res.send("Landing deleted");
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 const landingController = {
     getLandings,
     getMass,
     getClass,
-    getLandingsByYears
+    createLanding,
+    updateLanding,
+    deleteLanding
 }
 
 module.exports = landingController
