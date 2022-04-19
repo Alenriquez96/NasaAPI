@@ -14,7 +14,14 @@ const getAllLandings = async () => {
 
 const getLandingByMass = async (minimum_mass) => {
     try{
-        console.log(minimum_mass);
+        console.log(typeof parseInt(minimum_mass));
+        // const toNumber = async() => { 
+        //     await landingSchema.updateMany(
+        //          { 'mass' : { $type: 2 }}, 
+        //         [{ $set: { 'mass': { $toDouble: '$mass' } } }] 
+        //         ) 
+        // } 
+        // toNumber() 
         const landingByMass = await landingSchema.find({mass: {$gt:parseInt(minimum_mass)}});
         return landingByMass
     }
@@ -47,9 +54,9 @@ const getClass = async (clase) => {
 
 const getLandingsByYears = async (years) =>{
     try {
-        if (years.year1 && years.year2) {
-            console.log(years.year1);
-            const landingYear = await landingSchema.find({id:{"$gte": years.year1, "$lt": years.year2}});
+        if (years.from && years.to) {
+            console.log(years.from);
+            const landingYear = await landingSchema.find({id:{$gte: years.from, $lt: years.to}});
             return landingYear; 
         }
         else if(years.year1 && !years.year2){

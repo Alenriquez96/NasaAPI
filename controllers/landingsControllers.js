@@ -42,11 +42,11 @@ const getClass = async (req,res) =>{
 
 const getLandingsByYears = async (req,res)=>{
     try {
-        const year1 =  req.params.year1;
-        const year2 = req.params.year2;
+        const from =  req.query.from;
+        const to = req.query.to;
         const years = {
-            year1:year1,
-            year2:year2} 
+            from:from,
+            to:to} 
         const landingYears = await landingsModel.getLandingsByYears(years);
         res.status(200).json(landingYears);
     } catch (error) {
