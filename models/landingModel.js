@@ -13,7 +13,7 @@ const getAllLandings = async () => {
     }
 }
 
-const getLandingByMass = async (minimum_mass, from, to, years) => {
+const getLandingByMass = async (minimum_mass) => {
     try{
         if(minimum_mass){
         console.log(typeof parseInt(minimum_mass));
