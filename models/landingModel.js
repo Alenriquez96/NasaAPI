@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const landingSchema = require("./landingsSchema");
 require("mongoose");
 require("mongodb");
@@ -12,18 +13,20 @@ const getAllLandings = async () => {
     }
 }
 
-const getLandingByMass = async (minimum_mass) => {
+const getLandingByMass = async (minimum_mass, from, to, years) => {
     try{
+        if(minimum_mass){
         console.log(typeof parseInt(minimum_mass));
         // const toNumber = async() => { 
         //     await landingSchema.updateMany(
-        //          { 'mass' : { $type: 2 }}, 
-        //         [{ $set: { 'mass': { $toDouble: '$mass' } } }] 
+        //          { 'id' : { $type: 2 }}, 
+        //         [{ $set: { 'id': { $toDouble: '$id' } } }] 
         //         ) 
         // } 
         // toNumber() 
-        const landingByMass = await landingSchema.find({mass: {$gt:parseInt(minimum_mass)}});
+        const landingByMass = await landingSchema.find({mass: {$gt:minimum_mass}},"name mass -_id");
         return landingByMass
+        }
     }
     catch(err){
         console.error(err);
@@ -33,7 +36,7 @@ const getLandingByMass = async (minimum_mass) => {
 const getMass = async (masa) =>{
     try{
         console.log(masa);
-        const landingMass = await landingSchema.find({mass: masa});
+        const landingMass = await landingSchema.find({mass: masa}, "name mass -_id");
         return landingMass;            
     }
     catch{
@@ -44,7 +47,7 @@ const getMass = async (masa) =>{
 const getClass = async (clase) => {
     try{
         console.log(clase);
-        const landingClass = await landingSchema.find({recclass: clase});
+        const landingClass = await landingSchema.find({recclass: clase}, "name recclass -_id");
         return landingClass;
     } 
     catch (error) {
@@ -52,20 +55,67 @@ const getClass = async (clase) => {
     }
 }
 
-const getLandingsByYears = async (years) =>{
+const getLandingsByYearsFrom = async (years) =>{
     try {
-        if (years.from && years.to) {
-            console.log(years.from);
-            const landingYear = await landingSchema.find({id:{$gte: years.from, $lt: years.to}});
-            return landingYear; 
-        }
-        else if(years.year1 && !years.year2){
-            const landingYear = await landingSchema.find({id:{$gte:year1}})
-        }
+        console.log(years.from);
+        const landingYear = await landingSchema.find({year:{$gte: years.from}}, "name year mass -_id");
+        return landingYear; 
     } catch (error) {
         console.log(error);
     }
 }
+
+const getLandingsByYearsTo = async (years) =>{
+    try {
+        console.log(years.to);
+        const landingYear = await landingSchema.find({year:{$lt: years.to}}, "name year mass -_id");
+        return landingYear; 
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const getLandingsByYears = async (years) =>{
+    try {
+        console.log(years);
+        const landingYear = await landingSchema.find({year:{$gte: years.from, $lt: years.to}}, "name year mass -_id");
+        return landingYear; 
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+const createLanding =  async (landing)=>{
+    try {
+        const newLanding = new landingSchema(landing);
+        const create = await landingSchema.create(newLanding)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const updateLanding = async (id)=>{
+    try {
+        const oId = new ObjectId(id);
+        const landingToUpdate = await landingSchema.findById({id: oId});
+        const updatedLanding = new landingSchema(req.body);
+        landingToUpdate.overwrite(updatedLanding);
+        await landingToUpdate.save();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const deleteLanding = async (id)=>{
+    try {
+        console.log(id);
+        await landingSchema.deleteOne({id: id});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 
 const landingDB = {
@@ -73,7 +123,12 @@ const landingDB = {
     getLandingByMass,
     getMass,
     getClass,
-    getLandingsByYears
+    getLandingsByYearsFrom,
+    getLandingsByYearsTo,
+    getLandingsByYears,
+    createLanding,
+    updateLanding,
+    deleteLanding
 }
 
 module.exports = landingDB;
