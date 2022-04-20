@@ -48,13 +48,12 @@ const getNeasYearsTo = async(years)=>{
     }
 }
 
-const createNea = async(nea)=>{
+const createNea = async (nea) => {
     try {
         const newNea = new schema(nea);
-        const create = await schema.create(newNea)
-        await create.save();
+        await schema.create(newNea);
     } catch (error) {
-        console.log(error)
+        throw error;
     }
 }
 

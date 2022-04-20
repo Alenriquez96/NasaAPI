@@ -10,7 +10,6 @@ const neasSchema = new mongoose.Schema({
     discovery_date: {
         type: String,
         required: true,
-        unique: true
     },
     h_mag: {
         type: Number    ,
