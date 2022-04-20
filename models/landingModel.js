@@ -87,9 +87,10 @@ const getLandingsByYears = async (years) =>{
 
 
 const createLanding =  async (landing)=>{
+    console.log(landing);
     try {
         const newLanding = new landingSchema(landing);
-        const create = await landingSchema.create(newLanding)
+        await landingSchema.create(newLanding)
     } catch (error) {
         console.log(error);
     }
