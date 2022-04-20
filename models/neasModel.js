@@ -58,13 +58,13 @@ const createNea = async (nea) => {
     }
 }
 
-const updateNea = async (designation)=>{
+const updateNea = async (neas)=>{
     try {
-        const oId = new ObjectId(designation);
-        const neaToUpdate = await schema.find({designation: oId});
-        const updatedNea = new schema(req.body);
-        neaToUpdate.overwrite(updatedNea);
-        await neaToUpdate.save();
+        console.log(neas);
+        const newNea = schema(neas.body)
+        const oldNea = await schema.findOne({ id: neas.designation });
+        oldNea.overwrite(newNea);
+        await oldNea.save();
     } catch (error) {
         console.log(error);
     }

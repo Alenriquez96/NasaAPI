@@ -50,8 +50,11 @@ const createNea = async (req, res) => {
 
 const updateNea = async (req,res)=>{
     try {
-        const neaDes = req.params.designation;
-        const update = await neasModel.updateNea(neaDes);
+        const reqs = {
+            designation:req.params.designation,
+            body: req.body
+        }
+        await neasModel.updateNea(reqs);
         res.send("Nea updated")
     } catch (error) {
         console.log(error);

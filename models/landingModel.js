@@ -96,13 +96,12 @@ const createLanding =  async (landing)=>{
     }
 }
 
-const updateLanding = async (id)=>{
+const updateLanding = async (landing)=>{
     try {
-        const oId = new ObjectId(id);
-        const landingToUpdate = await landingSchema.findById({id: oId});
-        const updatedLanding = new landingSchema(req.body);
-        landingToUpdate.overwrite(updatedLanding);
-        await landingToUpdate.save();
+        const newLanding = landingSchema(landing.body)
+        const oldLanding = await landingSchema.findOne({ id: landing.id });
+        oldLanding.overwrite(newLanding);
+        await oldLanding.save();
     } catch (error) {
         console.log(error);
     }
