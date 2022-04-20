@@ -33,13 +33,18 @@ const getNeas = async(req,res)=>{
     }
 }
 
-const createNea = async (req,res) =>{
-    try {
-        console.log(req.body);
-        const create= await neasModel.createNea(req.body);  
-        res.send("Nea created");
-    } catch (error) {
-        console.log(error);
+
+const createNea = async (req, res) => {
+    if (Object.keys(req.body).length !== 0) {
+        try {
+            await neasModel.createNea(req.body);
+            res.status(201).json({ message: 'Nea creada correctamente' });
+        }
+        catch (error) {
+            res.status(400).json({ message: error });
+        }
+    } else {
+        res.status(400).json({ message: 'No hay datos para crear una nea' });
     }
 }
 
