@@ -69,9 +69,12 @@ const createLanding = async (req,res) =>{
 
 const updateLanding = async (req,res)=>{
     try {
-        const landingId = req.params.id;
-        const update = await landingsModel.updateLanding(landingId);
-        res.send("Landing updated")
+        const reqs = {
+            body:req.body,
+            id:req.params.id
+        }
+        await landingsModel.updateLanding(reqs);
+        res.send("Landing updated");
     } catch (error) {
         console.log(error);
     }
