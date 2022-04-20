@@ -35,7 +35,7 @@ const getNeas = async(req,res)=>{
 
 
 const createNea = async (req, res) => {
-    if (Object.keys(req.body).length !== 0) {
+    if (req.body) {
         try {
             await neasModel.createNea(req.body);
             res.status(201).json({ message: 'Nea creada correctamente' });

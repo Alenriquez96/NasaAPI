@@ -5,43 +5,33 @@ const mongoose = require("../utils/mongoAtlas");
 const neasSchema = new mongoose.Schema({
     designation: {
         type: String,
-        required: true,
     },
     discovery_date: {
         type: String,
-        required: true,
     },
     h_mag: {
-        type: Number    ,
-        required: true
+        type: String    ,
     },
     moid_au: {
-        type: Number,
-        required: true
+        type: String,     
     },
     q_au_1: {
-        type: Number,
-        required: true
+        type: String,    
     },
     q_au_2: {
-        type: Number,
-        required: true
+        type: String,      
     },
     period_yr: {
-        type: Number,
-        required: true
+        type: String,     
     },
     i_deg: {
-        type: Number,
-        required: true
+        type: String,    
     },
     pha:{
-        type: String,
-        required:true
+        type: String,     
     },
     orbit_class: {
         type: String,
-        required:true
     }
 });
 

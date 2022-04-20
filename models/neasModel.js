@@ -49,6 +49,7 @@ const getNeasYearsTo = async(years)=>{
 }
 
 const createNea = async (nea) => {
+    console.log(nea);
     try {
         const newNea = new schema(nea);
         await schema.create(newNea);
