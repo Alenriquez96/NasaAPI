@@ -39,8 +39,8 @@ const getMass = async (masa) =>{
         const landingMass = await landingSchema.find({mass: masa}, "name mass -_id");
         return landingMass;            
     }
-    catch{
-
+    catch(error){
+        console.log(error);
     }
 }
 
