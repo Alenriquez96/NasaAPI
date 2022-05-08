@@ -2,7 +2,9 @@ import React, { Component } from "react";
 
 class Footer extends Component {
   render() {
-    return <div>Footer</div>;
+    return (
+      <footer>@Developed by <a href="https://github.com/Alenriquez96">Alberto Enriquez</a></footer>
+    )
   }
 }
 
