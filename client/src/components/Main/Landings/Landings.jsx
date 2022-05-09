@@ -12,6 +12,7 @@ const Landings = () => {
   const [select, setSelect] = useState(null);
   const [option, setOption] =useState(null);
 
+  console.log(landings ,"landings");
   const asteroidIcon = new L.Icon({
     iconUrl: require('../../../assets/icon3.png'),
     iconAnchor: null,
@@ -26,10 +27,8 @@ const Landings = () => {
     const fetchData = async () =>{
       try {
         const res = await axios.get(`http://localhost:3000/api/astronomy/landings/${select}/${option}`)
+
         const data =  await res.data;
-
-      
-
         setLandings(data)
   
       } catch (error) {
@@ -91,7 +90,7 @@ const Landings = () => {
               position={[data.geolocation.latitude, data.geolocation.longitude]}
               icon={asteroidIcon}
             >
-               <Popup>Asteroid details:
+              <Popup>Asteroid details:
                 <ul>
                   <li>Name: {data.name}</li>
                   <li>ID: {data.id}</li>
@@ -151,7 +150,8 @@ else if (defaultLandings) {
       </MapContainer>
     </div>
   );
-}else{
+}
+else{
   return (
       <form onSubmit={handleSubmit}>
         <select name="by">

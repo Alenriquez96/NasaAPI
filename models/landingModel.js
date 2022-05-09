@@ -36,7 +36,7 @@ const getLandingByMass = async (minimum_mass) => {
 const getMass = async (masa) =>{
     try{
         console.log(masa);
-        const landingMass = await landingSchema.find({mass: masa}, "name mass -_id");
+        const landingMass = await landingSchema.find({mass: masa}, "-_id");
         return landingMass;            
     }
     catch(error){
@@ -47,7 +47,7 @@ const getMass = async (masa) =>{
 const getClass = async (clase) => {
     try{
         console.log(clase);
-        const landingClass = await landingSchema.find({recclass: clase}, "name recclass -_id");
+        const landingClass = await landingSchema.find({recclass: clase}, "-_id");
         return landingClass;
     } 
     catch (error) {
