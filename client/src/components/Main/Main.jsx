@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Landings from "./Landings";
 import Home from "./Home";
 import Neas from "./Neas";
+import List from "./List";
 import {Route, Routes} from "react-router-dom";
 
 class Main extends Component {
@@ -12,6 +13,7 @@ class Main extends Component {
           <Route element={<Home/>} path="/"/>
           <Route element={<Landings/>} path="/landings"/>
           <Route element={<Neas/>} path="/neas"/>
+          <Route element={<List/>} path="landings/list"/>
         </Routes>
       </main>
     )

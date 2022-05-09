@@ -3,7 +3,9 @@ import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';  
 import "./Landings.css";
-import L from "leaflet"
+import L from "leaflet";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Landings = () => {
@@ -12,7 +14,7 @@ const Landings = () => {
   const [select, setSelect] = useState(null);
   const [option, setOption] =useState(null);
 
-  console.log(landings ,"landings");
+  console.log(defaultLandings);
   const asteroidIcon = new L.Icon({
     iconUrl: require('../../../assets/icon3.png'),
     iconAnchor: null,
@@ -27,7 +29,6 @@ const Landings = () => {
     const fetchData = async () =>{
       try {
         const res = await axios.get(`http://localhost:3000/api/astronomy/landings/${select}/${option}`)
-
         const data =  await res.data;
         setLandings(data)
   
@@ -44,7 +45,7 @@ const Landings = () => {
         try {
           const defaultValue = await axios.get("http://localhost:3000/api/astronomy/landings");
           const defData = await defaultValue.data;
-          const dataSliced = defData.slice(0,99);
+          const dataSliced = defData.slice(0,300);
           setDefaultLandings(dataSliced);
 
         }catch(error){
@@ -64,6 +65,12 @@ const Landings = () => {
     setSelect(select);
   }
   
+
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `list`; 
+    navigate(path);
+  }
 
 
     
@@ -106,6 +113,8 @@ const Landings = () => {
           ) : null
         )}
       </MapContainer>
+      <h4>Or create your own landing!</h4>
+      <button onClick={routeChange}>Create</button>
     </div>
   );
 }
@@ -148,6 +157,8 @@ else if (defaultLandings) {
           ) : null
         )}
       </MapContainer>
+      <h4>Or create your own landing!</h4>
+      <button onClick={routeChange}>Create</button>
     </div>
   );
 }
