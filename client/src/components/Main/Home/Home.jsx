@@ -8,8 +8,8 @@ const Home = () => {
   const apod = result;
   return (
     <div>
-      <h1>Welcome to the Nasa App!</h1>
-      <img src={apod.url} alt="APOD" />
+      <h1>Welcome to the Nasa App!</h1> 
+      <img src={apod.url} alt="APOD" /> 
       <p>Today's astronomy picture of the day (Apod) is titled :</p>
       <h4>{apod.title}</h4>
       <p>It was taken in {apod.date}</p>
