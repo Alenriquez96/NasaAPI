@@ -23,7 +23,8 @@
     "express": "^4.17.3",
     "mongodb": "^4.5.0",
     "mongoose": "^6.2.10",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "sass": "^1.51.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

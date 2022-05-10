@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import Landings from "./Landings";
 import Home from "./Home";
 import Neas from "./Neas";
@@ -6,12 +6,15 @@ import Form from "./Form";
 import List from "./List";
 import NeasForm from "./NeasForm";
 import {Route, Routes} from "react-router-dom";
+import { themeContext } from "../../context/themeContext";
 
 
-class Main extends Component {
-  render() {
+function Main () {
+  const {theme} = useContext(themeContext)
+  const darkMode = "main"+theme
+
     return (
-      <main>
+      <main className={darkMode}>
         <Routes>
           <Route element={<Home/>} path="/"/>
           <Route element={<Landings/>} path="/landings"/>
@@ -22,7 +25,6 @@ class Main extends Component {
         </Routes>
       </main>
     )
-  }
 }
 
 export default Main;

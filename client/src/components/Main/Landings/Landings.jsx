@@ -2,10 +2,14 @@ import React,{ useState, useEffect, useContext } from "react";
 import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';  
-import "./Landings.css";
 import L from "leaflet";
 import { useNavigate } from "react-router-dom";
 import { landingContext } from "../../../context/landingContext";
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
 
 
 
@@ -65,8 +69,12 @@ const Landings = () => {
     const select = e.target.by.value;
     const option = e.target.option.value;
     const capitalizedOption = option.charAt(0).toUpperCase() + option.slice(1);
+    console.log(select, option);
     setOption(capitalizedOption);
     setSelect(select);
+
+    e.target.option.value="";
+
   }
   
 
@@ -80,14 +88,14 @@ const Landings = () => {
     
   if (landings) {
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <select name="by">
-          <option value="mass">Weight</option>
-          <option value="class">Class</option>
-        </select>
-        <input type="text" name="option" />
-        <input type="submit" />
+    <div className="divLanding">
+      <form onSubmit={handleSubmit} className="formLanding">
+      <Select name="by">
+            <MenuItem value="mass">Weight</MenuItem>
+            <MenuItem value="class">Class</MenuItem>
+        </Select>
+        <TextField id="outlined-basic" label={select} variant="outlined" name="option"/>
+        <Button variant="outlined" type="submit">Submit</Button>
       </form>
       <MapContainer center={[31.505, -0.09]} zoom={0} scrollWheelZoom={true}>
         <TileLayer
@@ -117,21 +125,23 @@ const Landings = () => {
           ) : null
         )}
       </MapContainer>
-      <h4>Or create your own landing!</h4>
-      <button onClick={routeChange}>Create</button>
+      <div className="divRouteChange">
+        <h4>Or create your own landing!</h4>
+        <Button onClick={routeChange} variant="outlined" type="submit">Create</Button>
+      </div>
     </div>
   );
 }
 else if (defaultLandings) {
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <select name="by">
-          <option value="mass">Weight</option>
-          <option value="class">Class</option>
-        </select>
-        <input type="text" name="option" />
-        <input type="submit" />
+    <div className="divLanding">
+      <form onSubmit={handleSubmit} className="formLanding">
+        <Select name="by">
+            <MenuItem value="mass">Weight</MenuItem>
+            <MenuItem value="class">Class</MenuItem>
+        </Select>
+        <TextField id="outlined-basic" label={select} variant="outlined" name="option"/>
+        <Button variant="outlined" type="submit">Submit</Button>
       </form>
       <MapContainer center={[31.505, -0.09]} zoom={3} scrollWheelZoom={true}>
         <TileLayer
@@ -161,20 +171,22 @@ else if (defaultLandings) {
           ) : null
         )}
       </MapContainer>
-      <h4>Or create your own landing!</h4>
-      <button onClick={routeChange}>Create</button>
+      <div className="divRouteChange">
+        <h4>Or create your own landing!</h4>
+        <Button onClick={routeChange} variant="outlined" type="submit">Create</Button>
+      </div>
     </div>
   );
 }
 else{
   return (
-      <form onSubmit={handleSubmit}>
-        <select name="by">
-          <option value="mass">Weight</option>
-          <option value="class">Class</option>
-        </select>
-        <input type="text" name="option" />
-        <input type="submit" />
+      <form onSubmit={handleSubmit} className="formLanding">
+        <Select name="by">
+            <MenuItem value="mass">Weight</MenuItem>
+            <MenuItem value="class">Class</MenuItem>
+        </Select>
+        <TextField id="outlined-basic" label={select} variant="outlined" name="option"/>
+        <Button variant="outlined" type="submit">Submit</Button>
       </form>
   )
 }

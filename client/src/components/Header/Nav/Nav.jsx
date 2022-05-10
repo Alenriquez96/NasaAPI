@@ -4,9 +4,9 @@ import {Link}from "react-router-dom";
 function Nav () {
     return (
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="/landings">Landings</Link>
-        <Link to="/neas">NEAs</Link>
+        <Link to="/">HOME</Link>
+        <Link to="/landings">LANDINGS</Link>
+        <Link to="/neas">NEAS</Link>
       </nav>
     )
   }

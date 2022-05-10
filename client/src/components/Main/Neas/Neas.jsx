@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import Card from "./Card";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./Neas.css"
+import Button from '@mui/material/Button';
 
 const Neas = () => {
   const [neas, setNeas] = useState(null)
@@ -42,8 +42,10 @@ const Neas = () => {
       <div id="neas">
         {neas.map((nea, i)=><Card key={i} data={nea} remove={()=>removeNea(i)}/>)}
       </div>
-      <h4>Or create your own NEA!</h4>
-        <button onClick={routeChange}>Create</button>
+      <div className="routeChangeNea">
+        <h4>Or create your own NEA!</h4>
+        <Button onClick={routeChange} variant="outlined" type="submit">Create</Button>
+      </div>
     </div>
 
   )
