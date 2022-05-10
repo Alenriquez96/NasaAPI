@@ -11,7 +11,7 @@ const getOrbitClass = async (orbit_class)=>{
 
 const getAllNeas = async ()=>{
     try {
-        const getAll = await schema.find({});
+        const getAll = await schema.find({}, "-_id");
         return getAll;
     } catch (error) {
         console.log(error);

@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import Landings from "./Landings";
 import Home from "./Home";
 import Neas from "./Neas";
+import Form from "./Form";
 import List from "./List";
+import NeasForm from "./NeasForm";
 import {Route, Routes} from "react-router-dom";
-import Paginate from "./Paginate";
+
 
 class Main extends Component {
   render() {
@@ -14,8 +16,9 @@ class Main extends Component {
           <Route element={<Home/>} path="/"/>
           <Route element={<Landings/>} path="/landings"/>
           <Route element={<Neas/>} path="/neas"/>
-          <Route element={<List/>} path="landings/list"/>
-          <Route element={<Paginate/>} path="/paginate"/>
+          <Route element={<Form/>} path="landings/create"/>
+          <Route element={<List/>} path="landings/list" />
+          <Route element={<NeasForm/>} path="/neas/create"/>
         </Routes>
       </main>
     )

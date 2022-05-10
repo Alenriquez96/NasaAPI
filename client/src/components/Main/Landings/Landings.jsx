@@ -10,8 +10,8 @@ import { landingContext } from "../../../context/landingContext";
 
 
 const Landings = () => {
-  const {getAllLandings} = useContext(landingContext);
-  const [defaultLandings, setDefaultLandings] = useState(null)
+  const { getAllLandings } = useContext(landingContext);
+  const [defaultLandings, setDefaultLandings] = useState(null);
   const [landings, setLandings] = useState(null);
   const [select, setSelect] = useState(null);
   const [option, setOption] =useState(null);
@@ -27,6 +27,24 @@ const Landings = () => {
     iconSize: new L.Point(40, 40)
   });
 
+  useEffect(
+    () => {
+      const fetchData = async () =>{
+        try {
+          const defaultValue = await axios.get("http://localhost:3000/api/astronomy/landings");
+          const defData = await defaultValue.data;
+          const dataSliced = defData.slice(0,300);
+          setDefaultLandings(dataSliced);
+          getAllLandings(dataSliced)
+          
+
+        }catch(error){
+          console.log(error);
+        }
+    }
+    fetchData();
+  },[])
+
   useEffect(() => {
     const fetchData = async () =>{
       try {
@@ -40,23 +58,6 @@ const Landings = () => {
     } 
     fetchData();
   }, [select,option])
-
-  useEffect(
-    () => {
-      const fetchData = async () =>{
-        try {
-          const defaultValue = await axios.get("http://localhost:3000/api/astronomy/landings");
-          const defData = await defaultValue.data;
-          const dataSliced = defData.slice(0,300);
-          setDefaultLandings(dataSliced);
-          getAllLandings(dataSliced)
-
-        }catch(error){
-          console.log(error);
-        }
-    }
-    fetchData();
-  },[])
   
   
   const handleSubmit = (e) =>{
@@ -71,7 +72,7 @@ const Landings = () => {
 
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
-    let path = `list`; 
+    let path = `create`; 
     navigate(path);
   }
 

@@ -7,8 +7,7 @@ import { landingContext } from "./context/landingContext";
 import React, {useState} from "react";
 
 function App() {
-  const [Alllandings,setAllLandings] = useState({});
-  console.log(Alllandings);
+  const [Alllandings,setAllLandings] = useState([]);
 
 
   const getAllLandings = (getAll) =>{
