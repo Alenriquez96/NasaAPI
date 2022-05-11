@@ -20,7 +20,6 @@ const Landings = () => {
   const [select, setSelect] = useState(null);
   const [option, setOption] =useState(null);
 
-  console.log(defaultLandings);
   const asteroidIcon = new L.Icon({
     iconUrl: require('../../../assets/icon3.png'),
     iconAnchor: null,
@@ -68,7 +67,7 @@ const Landings = () => {
     e.preventDefault();
     const select = e.target.by.value;
     const option = e.target.option.value;
-    const capitalizedOption = option.charAt(0).toUpperCase() + option.slice(1);
+    const capitalizedOption = option.toUpperCase();
     console.log(select, option);
     setOption(capitalizedOption);
     setSelect(select);
@@ -76,27 +75,39 @@ const Landings = () => {
     e.target.option.value="";
 
   }
-  
 
-  let navigate = useNavigate(); 
+  let navigate = useNavigate();
+  const handleClick = () =>{
+    let path = `list`; 
+    navigate(path);
+  }
+  
   const routeChange = () =>{ 
     let path = `create`; 
     navigate(path);
   }
 
-
     
   if (landings) {
   return (
     <div className="divLanding">
-      <form onSubmit={handleSubmit} className="formLanding">
-      <Select name="by">
-            <MenuItem value="mass">Weight</MenuItem>
-            <MenuItem value="class">Class</MenuItem>
-        </Select>
-        <TextField id="outlined-basic" label={select} variant="outlined" name="option"/>
-        <Button variant="outlined" type="submit">Submit</Button>
-      </form>
+      <div className="divBar">
+        <div>
+          <h5>Search landings by class or weight!</h5>
+          <form onSubmit={handleSubmit} className="formLanding">
+            <Select name="by">
+                <MenuItem value="mass">Weight</MenuItem>
+                <MenuItem value="class">Class</MenuItem>
+            </Select>
+            <TextField id="outlined-basic" label={select} variant="outlined" name="option"/>
+            <Button variant="outlined" type="submit">Submit</Button>
+          </form>
+        </div>
+        <div>
+          <h5>You can check the full list of landings here...</h5>
+          <Button variant="outlined" onClick={handleClick}>List</Button>
+        </div>
+      </div>
       <MapContainer center={[31.505, -0.09]} zoom={0} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -135,15 +146,24 @@ const Landings = () => {
 else if (defaultLandings) {
   return (
     <div className="divLanding">
-      <form onSubmit={handleSubmit} className="formLanding">
-        <Select name="by">
-            <MenuItem value="mass">Weight</MenuItem>
-            <MenuItem value="class">Class</MenuItem>
-        </Select>
-        <TextField id="outlined-basic" label={select} variant="outlined" name="option"/>
-        <Button variant="outlined" type="submit">Submit</Button>
-      </form>
-      <MapContainer center={[31.505, -0.09]} zoom={3} scrollWheelZoom={true}>
+      <div className="divBar">
+        <div>
+          <h5>Search landings by class or weight!</h5>
+          <form onSubmit={handleSubmit} className="formLanding">
+            <Select name="by">
+                <MenuItem value="mass">Weight</MenuItem>
+                <MenuItem value="class">Class</MenuItem>
+            </Select>
+            <TextField id="outlined-basic" label={select} variant="outlined" name="option"/>
+            <Button variant="outlined" type="submit">Submit</Button>
+          </form>
+        </div>
+        <div>
+          <h5>You can check the full list of landings here...</h5>
+          <Button variant="outlined" onClick={handleClick}>List</Button>
+        </div>
+      </div>
+      <MapContainer center={[31.505, -0.09]} zoom={2} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -180,14 +200,25 @@ else if (defaultLandings) {
 }
 else{
   return (
-      <form onSubmit={handleSubmit} className="formLanding">
-        <Select name="by">
-            <MenuItem value="mass">Weight</MenuItem>
-            <MenuItem value="class">Class</MenuItem>
-        </Select>
-        <TextField id="outlined-basic" label={select} variant="outlined" name="option"/>
-        <Button variant="outlined" type="submit">Submit</Button>
-      </form>
+    <div className="divLanding">
+      <div className="divBar">
+        <div>
+          <h5>Search landings by class or weight!</h5>
+          <form onSubmit={handleSubmit} className="formLanding">
+            <Select name="by">
+                <MenuItem value="mass">Weight</MenuItem>
+                <MenuItem value="class">Class</MenuItem>
+            </Select>
+            <TextField id="outlined-basic" label={select} variant="outlined" name="option"/>
+            <Button variant="outlined" type="submit">Submit</Button>
+          </form>
+        </div>
+        <div>
+          <h5>You can check the full list of landings here...</h5>
+          <Button variant="outlined" onClick={handleClick}>List</Button>
+        </div>
+      </div>
+    </div>
   )
 }
 }

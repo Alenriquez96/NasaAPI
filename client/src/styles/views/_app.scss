@@ -4,12 +4,19 @@
 
 main{
   @include column;
+  height: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: flex-start;
 }
 
 .main-dark{
   background-color: #000000;
   color: white;
   height: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: flex-start;
 }
   
 

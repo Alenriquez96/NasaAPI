@@ -21,11 +21,7 @@ const Neas = () => {
   }
     fetchData();
   }, []);
-
-  const removeNea = (i) =>{
-    const remainingNeas = neas.filter((neas,j)=>i!==j)
-    setNeas(remainingNeas)
-  }
+      
 
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
@@ -40,7 +36,10 @@ const Neas = () => {
       <p>A near-Earth asteroid (NEA) is any small Solar System body whose orbit brings it into proximity with Earth. By convention, a Solar System body is a NEA if its closest approach to the Sun (perihelion) is less than 1.3 astronomical units (AU).</p>
       <p>Here you can see all NEAS registered...</p>
       <div id="neas">
-        {neas.map((nea, i)=><Card key={i} data={nea} remove={()=>removeNea(i)}/>)}
+        {neas.map((nea, i)=><Card key={i} data={nea} 
+        // remove={()=>removeNea(i)}
+        />)
+        }
       </div>
       <div className="routeChangeNea">
         <h4>Or create your own NEA!</h4>

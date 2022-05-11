@@ -1,9 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
-import ReactPaginate from 'react-paginate';
-import { landingContext } from "../../../context/landingContext";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import CardLanding from "./Card"
 
 
 const List = () => {
@@ -14,14 +13,14 @@ const List = () => {
     setMyPage(AllLandings.length / 5);
   }
 
-  console.log(AllLandings);
+
   useEffect(
     () => {
       const fetchData = async () =>{
         try {
           const defaultValue = await axios.get("http://localhost:3000/api/astronomy/landings");
           const defData = await defaultValue.data;
-          const dataSliced = defData.slice(0,50);
+          const dataSliced = defData.slice(0,100);
           setAllLandings(dataSliced);
         }catch(error){
           console.log(error);
@@ -32,15 +31,16 @@ const List = () => {
 
 
   if (AllLandings) {
-
   return (
-    <div>
+    <section>
+      {AllLandings.map((landings,i)=>{
+        return <CardLanding key={i} data={landings}/>
+      })}
       <Stack spacing={2}>
         {/* <Pagination page={page} setPage={setPage} total={AllLandings.length} count={10} variant="outlined" color="primary"/> */}
         <Pagination page={page} onChange={setPage} total={100} count={10}/>
-      </Stack>
-
-    </div>
+      </Stack>  
+    </section>
   )
 }
 }

@@ -1,6 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+
 
 const NeasForm = () => {
   const { register, handleSubmit } = useForm();
@@ -29,31 +34,17 @@ const NeasForm = () => {
       <h2>Create your own NEA!</h2>
       <form onSubmit={handleSubmit(newRegistry)}>
         {/* Para usar register de react hook form hay que llamar igual al name del input y a lo que le pasas por register */}
-        <input
-          {...register("designation")}
-          type="text"
-          name="designation"
-          placeholder="Designation"
-        />
-        <input
-          {...register("discovery_date")}
-          type="text"
-          name="discovery_date"
-          placeholder="Discovery Date"
-        />
-        <input
-          {...register("period_yr")}
-          type="text"
-          name="period_yr"
-          placeholder="Orbit period"
-        />
-        <input
-          {...register("orbit_class")}
-          type="text"
-          name="orbit_class"
-          placeholder="Orbit class"
-        />
-        <input type="submit" value="Create" />
+        <Card sx={{ maxWidth: 345 }}>
+          <CardContent>
+            <TextField {...register("designation")}  label="Desgination" variant="outlined" name="designation"/>
+            <TextField {...register("discovery_date")}  
+            // label="Discovery Date" 
+            type="date" variant="outlined" name="discovery_date"/>
+            <TextField {...register("period_yr")}  label="Orbit period" variant="outlined"  name="period_yr"/>
+            <TextField {...register("orbit_class")}  label="Orbit class" variant="outlined" name="orbit_class"/>
+            <Button size="small" type="submit">Submit</Button>
+          </CardContent>
+        </Card>
       </form>
     </div>
   );

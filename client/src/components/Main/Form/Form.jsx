@@ -1,6 +1,10 @@
 import React from "react";
 import axios from "axios";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import TextField from '@mui/material/TextField';
 import { useForm } from "react-hook-form";
+import Button from '@mui/material/Button';
 
 
 const Form = () => {
@@ -13,6 +17,7 @@ const Form = () => {
       id: newLanding.id,
       mass: newLanding.mass,
       recclass: newLanding.recclass,
+      year: newLanding.year,
       reclat: newLanding.reclat,
       reclong: newLanding.reclong,
       geolocation: {
@@ -34,17 +39,21 @@ const Form = () => {
       <h2>Create your own landing!</h2>
       <form onSubmit={handleSubmit(newRegistry)}>
         {/* Para usar register de react hook form hay que llamar igual al name del input y a lo que le pasas por register */}
-        <input {...register("name")} type="text" name="name" placeholder="name"/>
-        <input {...register("id")} type="number" name="id" placeholder="id"/>
-        <input {...register("recclass")} type="text" name="recclass" placeholder="class"/>
-        <input {...register("mass")} type="number" name="mass" placeholder="weight"/>
-        <input {...register("reclat")} type="number" name="reclat" placeholder="latitude" step=".000001"/>
-        <input {...register("reclong")} type="number" name="reclong" placeholder="longitude" step=".000001"/>
-        <input type="submit" value="Create" />
+        <Card sx={{ maxWidth: 345 }}>
+          <CardContent>
+            <TextField {...register("name")}  label="Name" variant="outlined" name="name"/>
+            <TextField {...register("id")}  label="ID" variant="outlined" name="id"/>
+            <TextField {...register("recclass")}  label="Class" variant="outlined"  name="recclass"/>
+            <TextField {...register("year")} variant="outlined" type="date"  name="year"/>
+            <TextField {...register("mass")}  label="Weight" variant="outlined" name="mass"/>
+            <TextField {...register("reclat")}  label="Latitude" variant="outlined" name="reclat"/>
+            <TextField {...register("reclong")}  label="Longitude" variant="outlined" name="reclong"/>
+            <Button size="small" type="submit">Submit</Button>
+          </CardContent>
+        </Card>
       </form>
     </div>
   )
 };
-// }
 
 export default Form;

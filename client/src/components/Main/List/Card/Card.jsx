@@ -1,0 +1,99 @@
+import React from "react";
+import axios from "axios";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import { useForm } from "react-hook-form";
+
+
+const CardLanding = (props) => {
+  const { register, handleSubmit } = useForm();
+  const landings = props.data;
+
+  const removeLanding = async () =>{
+    try {
+      const res = await axios.delete(`http://localhost:3000/api/astronomy/landings/delete/${landings.id}`);
+      const data = await res.data;
+      console.log(data);
+      console.log(landings.id);      
+    } catch (error) {
+      console.log(error);
+    }   
+  }
+
+  const updateLanding = async(newLanding)=>{
+    try {
+      const newLandingObj = {
+        name: newLanding.name,
+        id: newLanding.id,
+        mass: newLanding.mass,
+        recclass: newLanding.recclass,
+        year: newLanding.year,
+        reclat: newLanding.reclat,
+        reclong: newLanding.reclong,
+        geolocation: {
+          latitude: newLanding.reclat,
+          longitude: newLanding.reclong
+        }
+      };
+      console.log(newLandingObj);
+      const res = await axios.put(`http://localhost:3000/api/astronomy/landings/edit/${landings.id}`, newLandingObj);
+      const data = await res.data;
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  return (
+    <Card sx={{ maxWidth: 345 }}>
+    <CardContent>
+      <Typography>{landings.id}</Typography>
+      <Typography gutterBottom variant="h5" component="div">
+        {landings.name}
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+      Mass: {landings.mass}
+      </Typography>
+      <Typography>Class: {landings.class}</Typography>
+      <Typography>Latitude: {landings.reclat}</Typography>
+      <Typography>Longitude: {landings.reclong}</Typography>
+    </CardContent>
+    <CardContent>
+     <Button size="small" onClick={removeLanding}>Delete</Button>
+
+
+
+     <Popup trigger={<Button size="small">Update</Button>} position="top left">
+      {close => (
+        <div >
+          <form onSubmit={handleSubmit(updateLanding)}>
+            <Card sx={{ maxWidth: 345 }}>
+              <CardContent>
+              <TextField {...register("name")}  label="Name" variant="outlined" name="name"/>
+              <TextField {...register("id")}  label="ID" variant="outlined" name="id" required/>
+              <TextField {...register("recclass")}  label="Class" variant="outlined"  name="recclass"/>
+              <TextField {...register("year")} variant="outlined" type="date"  name="year"/>
+              <TextField {...register("mass")}  label="Weight" variant="outlined" name="mass"/>
+              <TextField {...register("reclat")}  label="Latitude" variant="outlined" name="reclat"/>
+              <TextField {...register("reclong")}  label="Longitude" variant="outlined" name="reclong"/>
+              <Button size="small" type="submit">Update</Button>
+              </CardContent>
+            </Card>
+          </form>
+          <a className="close" onClick={close}>
+            &times;
+          </a>
+        </div>
+      )}
+      </Popup>
+    </CardContent>
+  </Card>
+  )
+}
+export default CardLanding;
