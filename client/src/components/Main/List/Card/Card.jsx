@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 const CardLanding = (props) => {
   const { register, handleSubmit } = useForm();
   const landings = props.data;
+  
 
   const removeLanding = async () =>{
     try {
@@ -53,7 +54,7 @@ const CardLanding = (props) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
     <CardContent>
-      <Typography>{landings.id}</Typography>
+      <Typography color="text.secondary">#{landings.id}</Typography>
       <Typography gutterBottom variant="h5" component="div">
         {landings.name}
       </Typography>
@@ -67,28 +68,23 @@ const CardLanding = (props) => {
     <CardContent>
      <Button size="small" onClick={removeLanding}>Delete</Button>
 
-
-
-     <Popup trigger={<Button size="small">Update</Button>} position="top left">
+     <Popup trigger={<Button size="small">Update</Button>} position="bottom left">
       {close => (
-        <div >
+        <div id="divPopup">
           <form onSubmit={handleSubmit(updateLanding)}>
             <Card sx={{ maxWidth: 345 }}>
               <CardContent>
-              <TextField {...register("name")}  label="Name" variant="outlined" name="name"/>
+              <TextField {...register("name")}  label="Name" variant="outlined" name="name" required/>
               <TextField {...register("id")}  label="ID" variant="outlined" name="id" required/>
-              <TextField {...register("recclass")}  label="Class" variant="outlined"  name="recclass"/>
-              <TextField {...register("year")} variant="outlined" type="date"  name="year"/>
+              <TextField {...register("recclass")}  label="Class" variant="outlined"  name="recclass" />
+              <TextField {...register("year")} variant="outlined" type="date"  name="year" />
               <TextField {...register("mass")}  label="Weight" variant="outlined" name="mass"/>
-              <TextField {...register("reclat")}  label="Latitude" variant="outlined" name="reclat"/>
-              <TextField {...register("reclong")}  label="Longitude" variant="outlined" name="reclong"/>
+              <TextField {...register("reclat")}  label="Latitude" variant="outlined" name="reclat" required/>
+              <TextField {...register("reclong")}  label="Longitude" variant="outlined" name="reclong" required/>
               <Button size="small" type="submit">Update</Button>
               </CardContent>
             </Card>
           </form>
-          <a className="close" onClick={close}>
-            &times;
-          </a>
         </div>
       )}
       </Popup>
