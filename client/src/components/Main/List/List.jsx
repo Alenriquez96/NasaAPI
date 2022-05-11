@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import CardLanding from "./Card"
+import CardLanding from "./Card";
+import usePagination from "../../hooks/usePagination";
+
 
 
 const List = () => {
   const [AllLandings, setAllLandings] = useState([]);
-  const [page, setMyPage] = useState(1); // this an example using hooks
-  const setPage = (e) => {
-    console.log(AllLandings.length / 5);
-    setMyPage(AllLandings.length / 5);
-  }
+  const [page, setPage] = useState(1); 
+  const PER_PAGE = 10;
+
+  const count = Math.ceil(AllLandings.length / PER_PAGE);
+  const _DATA = usePagination(AllLandings, PER_PAGE);
+
+  const handleChange = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
 
 
   useEffect(
@@ -20,7 +26,7 @@ const List = () => {
         try {
           const defaultValue = await axios.get("http://localhost:3000/api/astronomy/landings");
           const defData = await defaultValue.data;
-          const dataSliced = defData.slice(0,100);
+          const dataSliced = defData.slice(0,300);
           setAllLandings(dataSliced);
         }catch(error){
           console.log(error);
@@ -32,15 +38,24 @@ const List = () => {
 
   if (AllLandings) {
   return (
-    <section>
-      {AllLandings.map((landings,i)=>{
-        return <CardLanding key={i} data={landings}/>
-      })}
-      <Stack spacing={2}>
-        {/* <Pagination page={page} setPage={setPage} total={AllLandings.length} count={10} variant="outlined" color="primary"/> */}
-        <Pagination page={page} onChange={setPage} total={100} count={10}/>
-      </Stack>  
+    <div>
+      <Pagination
+          count={count}
+          size="large"
+          color="primary"
+          page={page}
+          variant="outlined"
+          onChange={handleChange}
+          className="muiPag"
+        />
+      <section>
+        {_DATA.currentData().map((landings,i) => {
+          return (
+            <CardLanding key={i} data={landings}/>
+          );
+        })}
     </section>
+    </div>
   )
 }
 }

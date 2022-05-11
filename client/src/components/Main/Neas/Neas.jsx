@@ -3,11 +3,23 @@ import Card from "./Card";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
+import usePagination from "../../hooks/usePagination";
+import Pagination from '@mui/material/Pagination';
 
 const Neas = () => {
-  const [neas, setNeas] = useState(null)
+  const [neas, setNeas] = useState([]);
+  const [page, setPage] = useState(1);
+  const PER_PAGE = 10;
 
-  console.log(neas);
+  const count = Math.ceil(neas.length / PER_PAGE);
+  const _DATA = usePagination(neas, PER_PAGE);
+
+  const handleChange = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
+
+
   useEffect(() => {
     const fetchData = async() =>{
     try{
@@ -35,8 +47,17 @@ const Neas = () => {
       <h3>What is a NEA?</h3>
       <p>A near-Earth asteroid (NEA) is any small Solar System body whose orbit brings it into proximity with Earth. By convention, a Solar System body is a NEA if its closest approach to the Sun (perihelion) is less than 1.3 astronomical units (AU).</p>
       <p>Here you can see all NEAS registered...</p>
+      <Pagination
+          count={count}
+          size="large"
+          color="primary"
+          page={page}
+          variant="outlined"
+          onChange={handleChange}
+          className="muiPag"
+        />
       <div id="neas">
-        {neas.map((nea, i)=><Card key={i} data={nea} 
+        {_DATA.currentData().map((nea, i)=><Card key={i} data={nea} 
         // remove={()=>removeNea(i)}
         />)
         }
