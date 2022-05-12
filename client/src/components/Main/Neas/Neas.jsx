@@ -33,6 +33,11 @@ const Neas = () => {
   }
     fetchData();
   }, []);
+
+  const removeNea = (i) =>{
+    const remainingNeas = neas.filter((landing,j)=>i!==j)
+    setNeas(remainingNeas);
+  }
       
 
   let navigate = useNavigate(); 
@@ -58,7 +63,7 @@ const Neas = () => {
         />
       <div id="neas">
         {_DATA.currentData().map((nea, i)=><Card key={i} data={nea} 
-        // remove={()=>removeNea(i)}
+        remove={()=>removeNea(i)}
         />)
         }
       </div>

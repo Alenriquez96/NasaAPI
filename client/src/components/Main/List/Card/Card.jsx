@@ -8,11 +8,23 @@ import Button from '@mui/material/Button';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { useForm } from "react-hook-form";
+import logo1 from "../../../../assets/i1.png";
+import logo2 from "../../../../assets/i2.png";
+import logo3 from "../../../../assets/i3.png";
+import logo4 from "../../../../assets/i4.png";
+import logo5 from "../../../../assets/i5.png";
+import logo6 from "../../../../assets/i6.png";
+import logo7 from "../../../../assets/i7.png";
+
 
 
 const CardLanding = (props) => {
   const { register, handleSubmit } = useForm();
   const landings = props.data;
+
+  const images = [logo1,logo2,logo3,logo4,logo5,logo6,logo7];
+  const shuffledImages = images.sort((a, b) => 0.5 - Math.random());
+
   
 
   const removeLanding = async () =>{
@@ -20,7 +32,8 @@ const CardLanding = (props) => {
       const res = await axios.delete(`http://localhost:3000/api/astronomy/landings/delete/${landings.id}`);
       const data = await res.data;
       console.log(data);
-      console.log(landings.id);      
+      console.log(landings.id);
+      props.remove();
     } catch (error) {
       console.log(error);
     }   
@@ -58,6 +71,7 @@ const CardLanding = (props) => {
       <Typography gutterBottom variant="h5" component="div">
         {landings.name}
       </Typography>
+      <img src={shuffledImages[0]} alt="Asteroid icons"/>
       <Typography variant="body2" color="text.secondary">
       Mass: {landings.mass}
       </Typography>

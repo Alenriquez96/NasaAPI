@@ -6,6 +6,7 @@ import usePagination from "../../hooks/usePagination";
 
 
 
+
 const List = () => {
   const [AllLandings, setAllLandings] = useState([]);
   const [page, setPage] = useState(1); 
@@ -13,6 +14,7 @@ const List = () => {
 
   const count = Math.ceil(AllLandings.length / PER_PAGE);
   const _DATA = usePagination(AllLandings, PER_PAGE);
+
 
   const handleChange = (e, p) => {
     setPage(p);
@@ -33,7 +35,13 @@ const List = () => {
         }
     }
     fetchData();
-  },[])
+  },[]);
+
+
+  const removeLanding = (i) =>{
+    const remainingLandings = AllLandings.filter((landing,j)=>i!==j)
+    setAllLandings(remainingLandings);
+  }
 
 
   if (AllLandings) {
@@ -51,7 +59,7 @@ const List = () => {
       <section>
         {_DATA.currentData().map((landings,i) => {
           return (
-            <CardLanding key={i} data={landings}/>
+            <CardLanding key={i} data={landings} remove={()=>removeLanding(i)}/>
           );
         })}
     </section>

@@ -40,7 +40,7 @@ const Form = () => {
       <form onSubmit={handleSubmit(newRegistry)}>
         {/* Para usar register de react hook form hay que llamar igual al name del input y a lo que le pasas por register */}
         <Card sx={{ maxWidth: 345 }}>
-          <CardContent>
+          <CardContent className="form">
             <TextField {...register("name")}  label="Name" variant="outlined" name="name"/>
             <TextField {...register("id")}  label="ID" variant="outlined" name="id"/>
             <TextField {...register("recclass")}  label="Class" variant="outlined"  name="recclass"/>

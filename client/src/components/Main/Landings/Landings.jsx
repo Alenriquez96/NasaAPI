@@ -20,11 +20,11 @@ const Landings = () => {
   const [select, setSelect] = useState(null);
   const [option, setOption] =useState(null);
 
-  console.log(defaultLandings);
-  console.log(landings);
+  // console.log(defaultLandings);
+  // console.log(landings);
 
   const asteroidIcon = new L.Icon({
-    iconUrl: require('../../../assets/icon3.png'),
+    iconUrl: require('../../../assets/icon-azul.png'),
     iconAnchor: null,
     popupAnchor: [0, -10],
     shadowUrl: null,
@@ -115,6 +115,7 @@ const Landings = () => {
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://api.mapbox.com/styles/v1/alenriquez96/cl31qm2sr002c14nuopvdpdg3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWxlbnJpcXVlejk2IiwiYSI6ImNsMDByNzh2NDBiYjQza21venc3bDY5amgifQ.eSIELlDBGMpJS14wkKbqqA"
+          // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {landings.map((data, i) =>
           data.geolocation ? (
@@ -170,6 +171,7 @@ else if (defaultLandings) {
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://api.mapbox.com/styles/v1/alenriquez96/cl31qm2sr002c14nuopvdpdg3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWxlbnJpcXVlejk2IiwiYSI6ImNsMDByNzh2NDBiYjQza21venc3bDY5amgifQ.eSIELlDBGMpJS14wkKbqqA"
+            // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {defaultLandings.map((data, i) =>
             data.geolocation ? (

@@ -8,9 +8,9 @@ const Home = () => {
   const apod = result;
   
   return (
-    <div>
-      {loading? <CircularProgress />: 
-      <div>
+    <div id="divHome">
+      {loading?<div id="divSpinner"><CircularProgress /></div>: 
+      <section>
         <h1>Welcome to the Nasa App!</h1>
         {apod.media_type === "video" ?
           <iframe
@@ -21,12 +21,12 @@ const Home = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           title="Embedded youtube"
-        /> : <img src={apod.url} alt="APOD" />}
+        /> : <img className="imgHome" src={apod.hdurl} alt="APOD" />}
         <p>Today's astronomy picture of the day (Apod) is titled :</p>
         <h4>{apod.title}</h4>
         <p>It was taken in {apod.date}</p>
         <p>{apod.explanation}</p>
-      </div>}
+      </section>}
     </div>
   )
 };

@@ -8,11 +8,19 @@ import axios from "axios";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { useForm } from "react-hook-form";
+import nea1 from "../../../../assets/nea1.png";
+import nea2 from "../../../../assets/nea2.png";
+import nea3 from "../../../../assets/nea3.png";
 
 
 const CardNeas = (props) => {
   const neas = props.data;
   const { register, handleSubmit } = useForm();
+
+
+  
+  const images = [nea1,nea2,nea3];
+  const shuffledImages = images.sort((a, b) => 0.5 - Math.random());
 
   const removeNea = async () =>{
     console.log(neas.designation.replaceAll(" ", "-"));
@@ -20,7 +28,8 @@ const CardNeas = (props) => {
       const res = await axios.delete(`http://localhost:3000/api/astronomy/neas/delete/${neas.designation}`);
       const data = await res.data;
       console.log(data);
-      console.log(neas.designation);      
+      console.log(neas.designation); 
+      props.remove();     
     } catch (error) {
       console.log(error);
     }   
@@ -53,6 +62,7 @@ const CardNeas = (props) => {
         <Typography gutterBottom variant="h5" component="div">
           {neas.orbit_class}
         </Typography>
+        <img src={shuffledImages[0]} alt="neas icon"/>
         <Typography variant="body2" color="text.secondary">
         Discovery date: {neas.discovery_date}
         </Typography>

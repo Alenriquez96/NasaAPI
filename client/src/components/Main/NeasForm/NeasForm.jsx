@@ -35,7 +35,7 @@ const NeasForm = () => {
       <form onSubmit={handleSubmit(newRegistry)}>
         {/* Para usar register de react hook form hay que llamar igual al name del input y a lo que le pasas por register */}
         <Card sx={{ maxWidth: 345 }}>
-          <CardContent>
+          <CardContent className="form">
             <TextField {...register("designation")}  label="Desgination" variant="outlined" name="designation"/>
             <TextField {...register("discovery_date")}  
             // label="Discovery Date" 
