@@ -15,6 +15,7 @@ import logo4 from "../../../../assets/i4.png";
 import logo5 from "../../../../assets/i5.png";
 import logo6 from "../../../../assets/i6.png";
 import logo7 from "../../../../assets/i7.png";
+import {Link} from "react-router-dom";
 
 
 
@@ -66,43 +67,46 @@ const CardLanding = (props) => {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-    <CardContent>
-      <Typography color="text.secondary">#{landings.id}</Typography>
-      <Typography gutterBottom variant="h5" component="div">
-        {landings.name}
-      </Typography>
-      <img src={shuffledImages[0]} alt="Asteroid icons"/>
-      <Typography variant="body2" color="text.secondary">
-      Mass: {landings.mass}
-      </Typography>
-      <Typography>Class: {landings.class}</Typography>
-      <Typography>Latitude: {landings.reclat}</Typography>
-      <Typography>Longitude: {landings.reclong}</Typography>
-    </CardContent>
-    <CardContent>
-     <Button size="small" onClick={removeLanding}>Delete</Button>
+      <CardContent>
+        <Link to="/landings/detail">
+          <Typography color="text.secondary">#{landings.id}</Typography>
+          <Typography gutterBottom variant="h5" component="div">
+            {landings.name}
+          </Typography>
+          <img src={shuffledImages[0]} alt="Asteroid icons" className="imgCard"/>
+          <Typography variant="body2" color="text.secondary">
+          Mass: {landings.mass}
+          </Typography>
+          <Typography>Class: {landings.class}</Typography>
+          <Typography>Latitude: {landings.reclat}</Typography>
+          <Typography>Longitude: {landings.reclong}</Typography>
+        </Link>
+      </CardContent>
+      <CardContent>
+      <Button size="small" onClick={removeLanding}>Delete</Button>
+      
 
-     <Popup trigger={<Button size="small">Update</Button>} position="bottom left">
-      {close => (
-        <div id="divPopup">
-          <form onSubmit={handleSubmit(updateLanding)}>
-            <Card sx={{ maxWidth: 345 }}>
-              <CardContent>
-              <TextField {...register("name")}  label="Name" variant="outlined" name="name" required/>
-              <TextField {...register("id")}  label="ID" variant="outlined" name="id" required/>
-              <TextField {...register("recclass")}  label="Class" variant="outlined"  name="recclass" />
-              <TextField {...register("year")} variant="outlined" type="date"  name="year" />
-              <TextField {...register("mass")}  label="Weight" variant="outlined" name="mass"/>
-              <TextField {...register("reclat")}  label="Latitude" variant="outlined" name="reclat" required/>
-              <TextField {...register("reclong")}  label="Longitude" variant="outlined" name="reclong" required/>
-              <Button size="small" type="submit">Update</Button>
-              </CardContent>
-            </Card>
-          </form>
-        </div>
-      )}
-      </Popup>
-    </CardContent>
+      <Popup trigger={<Button size="small">Update</Button>} position="bottom left">
+        {close => (
+          <div id="divPopup">
+            <form onSubmit={handleSubmit(updateLanding)}>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardContent>
+                <TextField {...register("name")}  label="Name" variant="outlined" name="name" required/>
+                <TextField {...register("id")}  label="ID" variant="outlined" name="id" required/>
+                <TextField {...register("recclass")}  label="Class" variant="outlined"  name="recclass" />
+                <TextField {...register("year")} variant="outlined" type="date"  name="year" />
+                <TextField {...register("mass")}  label="Weight" variant="outlined" name="mass"/>
+                <TextField {...register("reclat")}  label="Latitude" variant="outlined" name="reclat" required/>
+                <TextField {...register("reclong")}  label="Longitude" variant="outlined" name="reclong" required/>
+                <Button size="small" type="submit">Update</Button>
+                </CardContent>
+              </Card>
+            </form>
+          </div>
+        )}
+        </Popup>
+      </CardContent>
   </Card>
   )
 }

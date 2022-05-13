@@ -1,10 +1,9 @@
-import React,{ useState, useEffect, useContext } from "react";
+import React,{ useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';  
 import L from "leaflet";
 import { useNavigate } from "react-router-dom";
-import { landingContext } from "../../../context/landingContext";
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
@@ -14,7 +13,6 @@ import Button from '@mui/material/Button';
 
 
 const Landings = () => {
-  const { getAllLandings } = useContext(landingContext);
   const [defaultLandings, setDefaultLandings] = useState(null);
   const [landings, setLandings] = useState(null);
   const [select, setSelect] = useState(null);
@@ -41,7 +39,6 @@ const Landings = () => {
           const defData = await defaultValue.data;
           const dataSliced = defData.slice(0,300);
           setDefaultLandings(dataSliced);
-          getAllLandings(dataSliced)
         }catch(error){
           console.log(error);
         }
