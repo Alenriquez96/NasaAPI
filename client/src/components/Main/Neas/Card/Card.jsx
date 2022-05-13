@@ -23,12 +23,12 @@ const CardNeas = (props) => {
   const shuffledImages = images.sort((a, b) => 0.5 - Math.random());
 
   const removeNea = async () =>{
-    console.log(neas.designation.replaceAll(" ", "-"));
+    const encodedNea = encodeURIComponent(neas.designation);
+    console.log(encodedNea);
     try {
-      const res = await axios.delete(`http://localhost:3000/api/astronomy/neas/delete/${neas.designation}`);
+      const res = await axios.delete(`http://localhost:3000/api/astronomy/neas/delete/${encodedNea}`);
       const data = await res.data;
       console.log(data);
-      console.log(neas.designation); 
       props.remove();     
     } catch (error) {
       console.log(error);
@@ -46,7 +46,9 @@ const CardNeas = (props) => {
         orbit_class: newNea.orbit_class
       };
       console.log(newNeaObj);
-      const res = await axios.put(`http://localhost:3000/api/astronomy/neas/edit/${neas.designation}`, newNeaObj);
+      const encodedNea = encodeURIComponent(neas.designation);
+      console.log(encodedNea);
+      const res = await axios.put(`http://localhost:3000/api/astronomy/neas/edit/${encodedNea}`, newNeaObj);
       const data = await res.data;
       console.log(data);
     } catch (error) {
