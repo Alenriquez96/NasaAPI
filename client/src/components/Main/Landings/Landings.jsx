@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
+import {Link} from "react-router-dom";
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';  
 import L from "leaflet";
@@ -187,6 +188,7 @@ else if (defaultLandings) {
                     <li>Year: {data.year}</li>
                     <li>Latitude: {data.reclat}</li>
                     <li>Longitude: {data.reclong || ""}</li>
+                    <Link to={`/landings/detail/${data.id}`}>See more Details</Link>
                   </ul>
                 </Popup>
               </Marker>

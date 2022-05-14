@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {useParams,Link} from "react-router-dom";
 import axios from "axios";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
 
 const NeasDetail = () => {
   const { id } = useParams();
@@ -36,6 +38,9 @@ const NeasDetail = () => {
           Discovery date: {neasById.discovery_date}
           </Typography>
           <Typography>Orbital period: {neasById.period_yr}</Typography>
+          <Link to={`/neas`}>
+            <Button variant="outlined">List</Button>
+          </Link>
         </CardContent>
     </Card>
   )

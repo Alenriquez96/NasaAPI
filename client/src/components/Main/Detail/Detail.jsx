@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {useParams,Link} from "react-router-dom";
 import axios from "axios";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';  
 import L from "leaflet";
+
+
 
 
 
@@ -37,7 +40,8 @@ const Detail = () => {
       }
   }
   fetchData();
-  }, [id])
+  }, [id]);
+
   
 
 
@@ -71,6 +75,9 @@ const Detail = () => {
                   </Popup>
                 </Marker>
         </MapContainer>
+        <Link to={`/landings/list`}>
+          <Button variant="outlined">List</Button>
+        </Link>
       </CardContent>
     </Card>
   )
