@@ -5,7 +5,8 @@ import Neas from "./Neas";
 import Form from "./Form";
 import List from "./List";
 import NeasForm from "./NeasForm";
-import Detail from "./List/Card/Detail";
+import Detail from "./Detail";
+import NeasDetail from "./NeasDetail";
 import {Route, Routes} from "react-router-dom";
 import { themeContext } from "../../context/themeContext";
 
@@ -23,7 +24,8 @@ function Main () {
           <Route element={<Form/>} path="landings/create"/>
           <Route element={<List/>} path="landings/list" />
           <Route element={<NeasForm/>} path="/neas/create"/>
-          <Route element={<Detail/>} path="landings/detail"/>
+          <Route element={<Detail/>} path="landings/detail/:id"/>
+          <Route element={<NeasDetail/>} path="neas/detail/:id"/>
         </Routes>
       </main>
     )

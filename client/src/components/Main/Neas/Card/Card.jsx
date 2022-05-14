@@ -11,6 +11,8 @@ import { useForm } from "react-hook-form";
 import nea1 from "../../../../assets/nea1.png";
 import nea2 from "../../../../assets/nea2.png";
 import nea3 from "../../../../assets/nea3.png";
+import {Link} from "react-router-dom";
+
 
 
 const CardNeas = (props) => {
@@ -59,17 +61,19 @@ const CardNeas = (props) => {
   
   return (
     <Card className="cards" sx={{ maxWidth: 345 }}>
-      <CardContent>
-        <Typography>{neas.designation}</Typography>
-        <Typography gutterBottom variant="h5" component="div">
-          {neas.orbit_class}
-        </Typography>
-        <img src={shuffledImages[0]} alt="neas icon"/>
-        <Typography variant="body2" color="text.secondary">
-        Discovery date: {neas.discovery_date}
-        </Typography>
-        <Typography>Orbital period: {neas.period_yr}</Typography>
-      </CardContent>
+      <Link to={`/neas/detail/${neas._id}`}>
+        <CardContent>
+          <Typography>{neas.designation}</Typography>
+          <Typography gutterBottom variant="h5" component="div">
+            {neas.orbit_class}
+          </Typography>
+          <img src={shuffledImages[0]} alt="neas icon"/>
+          <Typography variant="body2" color="text.secondary">
+          Discovery date: {neas.discovery_date}
+          </Typography>
+          <Typography>Orbital period: {neas.period_yr}</Typography>
+        </CardContent>
+      </Link>
       <CardContent>
        <Button size="small" onClick={removeNea}>Delete</Button>
        <Popup trigger={<Button size="small">Update</Button>} position="top left">

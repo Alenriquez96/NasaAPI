@@ -37,7 +37,7 @@ const Landings = () => {
         try {
           const defaultValue = await axios.get("http://localhost:3000/api/astronomy/landings");
           const defData = await defaultValue.data;
-          const dataSliced = defData;
+          const dataSliced = defData.slice(0,300);
           setDefaultLandings(dataSliced);
         }catch(error){
           console.log(error);

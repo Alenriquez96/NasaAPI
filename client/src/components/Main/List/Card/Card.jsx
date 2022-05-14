@@ -67,8 +67,8 @@ const CardLanding = (props) => {
 
   return (
     <Card className="cards" sx={{ maxWidth: 345 }}>
-      <CardContent>
-        <Link to={`/landings/detail/${landings.mass}`}>
+      <Link to={`/landings/detail/${landings.id}`}>
+        <CardContent>
           <Typography color="text.secondary">#{landings.id}</Typography>
           <Typography gutterBottom variant="h5" component="div">
             {landings.name}
@@ -80,8 +80,8 @@ const CardLanding = (props) => {
           <Typography>Class: {landings.recclass}</Typography>
           <Typography>Latitude: {landings.reclat}</Typography>
           <Typography>Longitude: {landings.reclong}</Typography>
-        </Link>
-      </CardContent>
+        </CardContent>
+      </Link>
       <CardContent>
       <Button size="small" onClick={removeLanding}>Delete</Button>
       

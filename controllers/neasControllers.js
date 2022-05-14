@@ -33,6 +33,15 @@ const getNeas = async(req,res)=>{
     }
 }
 
+const getNeasById = async(req,res)=>{
+    try {
+        const neasId = await neasModel.getNeasById(req.params.id);
+        res.status(200).json(neasId);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 const createNea = async (req, res) => {
     if (req.body) {
@@ -73,6 +82,7 @@ const deleteNeas = async (req,res)=>{
 
 const exp = {
     getNeas,
+    getNeasById,
     createNea,
     updateNea,
     deleteNeas

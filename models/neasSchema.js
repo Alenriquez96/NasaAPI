@@ -5,6 +5,7 @@ const mongoose = require("../utils/mongoAtlas");
 const neasSchema = new mongoose.Schema({
     designation: {
         type: String,
+        unique:true
     },
     discovery_date: {
         type: String,

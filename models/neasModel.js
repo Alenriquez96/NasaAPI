@@ -11,8 +11,17 @@ const getOrbitClass = async (orbit_class)=>{
 
 const getAllNeas = async ()=>{
     try {
-        const getAll = await schema.find({}, "-_id");
+        const getAll = await schema.find({});
         return getAll;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const getNeasById = async(id) =>{
+    try {
+        const getId = await schema.findOne({_id: id },"-_id");
+        return getId;
     } catch (error) {
         console.log(error);
     }
@@ -82,6 +91,7 @@ const deleteNea = async (designation)=>{
 const exp = {
     getOrbitClass,
     getAllNeas,
+    getNeasById,
     getNeasYears,
     getNeasYearsFrom,
     getNeasYearsTo,
