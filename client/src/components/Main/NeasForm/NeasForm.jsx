@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import Alert from '@mui/material/Alert';
 
 
 const NeasForm = () => {
   const { register, handleSubmit } = useForm();
+  const [isRegistered, setIsRegistered] = useState(false);
 
   const newRegistry = async (newNea) => {
     const newNeaObj = {
@@ -26,6 +28,10 @@ const NeasForm = () => {
     );
     const data = res.data;
     console.log(data);
+
+    if(data==='Nea creada correctamente') {
+      setIsRegistered(true);
+    }
   };
 
   
@@ -46,6 +52,11 @@ const NeasForm = () => {
           </CardContent>
         </Card>
       </form>
+      {isRegistered===true?
+      <div>
+        <Alert severity="success">Nea Created succesfully!</Alert>
+      </div>
+      :""}
     </div>
   );
 };

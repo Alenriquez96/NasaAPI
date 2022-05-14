@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
 import { useForm } from "react-hook-form";
 import Button from '@mui/material/Button';
+import {Link} from "react-router-dom";
+import Alert from '@mui/material/Alert';
+
 
 
 const Form = () => {
   const { register, handleSubmit } = useForm();
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [newLanding, setNewLanding] = useState("");
 
 
   const newRegistry = async(newLanding) =>{
@@ -31,7 +36,10 @@ const Form = () => {
     const res = await axios.post("http://localhost:3000/api/astronomy/landings/create",newLandingObj);
     const data = res.data;
     console.log(data);
-    
+    if (data === "Landing created") {
+      setIsRegistered(true);
+      setNewLanding(newLandingObj);
+    }
   }
   
   return (
@@ -52,6 +60,12 @@ const Form = () => {
           </CardContent>
         </Card>
       </form>
+      {isRegistered===true?
+      <div>
+        <Alert severity="success">Landing Created succesfully!</Alert>
+        <Link to={`/landings/detail/${newLanding.id}`}>See details</Link>
+      </div>
+      :""}
     </div>
   )
 };

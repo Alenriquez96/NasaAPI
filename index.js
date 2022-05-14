@@ -1,6 +1,7 @@
 const express =  require("express");
 const landingRouter = require("./routes/landingsRoutes");
 const neasRouter = require("./routes/neasRoutes");
+const usersRouter = require("./routes/usersRoutes");
 const app = express();
 const port = 3000;
 const cors = require('cors');
@@ -12,6 +13,8 @@ app.use(cors());
 
 app.use("/api",landingRouter);
 app.use("/api/astronomy",neasRouter);
+app.use("/api/astronomy",usersRouter);
+
 
 
 app.listen(port, ()=>{

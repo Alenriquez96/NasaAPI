@@ -47,7 +47,7 @@ const createNea = async (req, res) => {
     if (req.body) {
         try {
             await neasModel.createNea(req.body);
-            res.status(201).json({ message: 'Nea creada correctamente' });
+            res.status(201).json('Nea creada correctamente');
         }
         catch (error) {
             res.status(400).json({ message: error });
