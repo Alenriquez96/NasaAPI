@@ -13,6 +13,15 @@ const getAllLandings = async () => {
     }
 }
 
+const getLandingById = async (id) => {
+    try {
+        const landingById = await landingSchema.findOne({id: id}, "-_id");
+        return landingById;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const getLandingByMass = async (minimum_mass) => {
     try{
         if(minimum_mass){
@@ -120,6 +129,7 @@ const deleteLanding = async (id)=>{
 
 const landingDB = {
     getAllLandings,
+    getLandingById,
     getLandingByMass,
     getMass,
     getClass,

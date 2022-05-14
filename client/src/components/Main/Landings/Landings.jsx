@@ -37,7 +37,7 @@ const Landings = () => {
         try {
           const defaultValue = await axios.get("http://localhost:3000/api/astronomy/landings");
           const defData = await defaultValue.data;
-          const dataSliced = defData.slice(0,300);
+          const dataSliced = defData;
           setDefaultLandings(dataSliced);
         }catch(error){
           console.log(error);
@@ -115,7 +115,7 @@ const Landings = () => {
           // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {landings.map((data, i) =>
-          data.geolocation ? (
+          data.geolocation && data.reclat &&data.reclong ? (
             <Marker
               key={i}
               position={[data.geolocation.latitude, data.geolocation.longitude]}
@@ -171,7 +171,7 @@ else if (defaultLandings) {
             // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {defaultLandings.map((data, i) =>
-            data.geolocation ? (
+            data.geolocation && data.reclat &&data.reclong ? (
               <Marker
                 key={i}
                 position={[data.geolocation.latitude, data.geolocation.longitude]}

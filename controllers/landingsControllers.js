@@ -34,6 +34,15 @@ const getLandings = async (req,res)=>{
     }
 }
 
+const getById = async (req,res) => {
+    try {
+        const landingId = await landingsModel.getLandingById(req.params.id);
+        res.status(200).json(landingId);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const getMass = async (req,res)=>{
     try{
         const landingMass = await landingsModel.getMass(req.params.mass);
@@ -94,6 +103,7 @@ const deleteLanding = async (req,res)=>{
 const landingController = {
     getLandings,
     getMass,
+    getById,
     getClass,
     createLanding,
     updateLanding,

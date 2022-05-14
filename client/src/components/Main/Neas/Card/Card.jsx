@@ -58,7 +58,7 @@ const CardNeas = (props) => {
 
   
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card className="cards" sx={{ maxWidth: 345 }}>
       <CardContent>
         <Typography>{neas.designation}</Typography>
         <Typography gutterBottom variant="h5" component="div">
