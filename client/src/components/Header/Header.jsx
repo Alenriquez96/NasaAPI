@@ -4,6 +4,8 @@ import logo from "../../assets/nasa.png"
 import { themeContext } from '../../context/themeContext';
 import Switch from '@mui/material/Switch';
 import { styled } from '@mui/material/styles';
+import logoIcon from "../../assets/login.svg";
+import { Link } from "react-router-dom";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -61,9 +63,12 @@ function Header () {
       <header className={darkMode}>
         <img src={logo} alt="Nasa logo"/>
         <Nav/>
-        <button className="btnMode" onClick={toggleTheme}>        
-          {<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-        </button>
+        <div>
+          <button className="btnMode" onClick={toggleTheme}>        
+            {<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+          </button>
+          <Link to="/signup" title="Sign Up"><img className="loginIcon" src={logoIcon} alt="login icon"/></Link>
+        </div>
       </header>
     )
   

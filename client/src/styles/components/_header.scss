@@ -20,3 +20,15 @@ header>img{
     background-color: #6c8e9e;
     border: none;
 }
+
+header>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.loginIcon{
+    height: 35px;
+    width: 35px;
+}

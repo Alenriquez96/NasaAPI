@@ -38,6 +38,7 @@ const Landings = () => {
         try {
           const defaultValue = await axios.get("http://localhost:3000/api/astronomy/landings");
           const defData = await defaultValue.data;
+          console.log(defData);
           const dataSliced = defData.slice(0,300);
           setDefaultLandings(dataSliced);
         }catch(error){
@@ -68,7 +69,6 @@ const Landings = () => {
     const select = e.target.by.value;
     const option = e.target.option.value;
     const capitalizedOption = option.toUpperCase();
-    console.log(select, option);
     setOption(capitalizedOption);
     setSelect(select);
 

@@ -7,6 +7,8 @@ import List from "./List";
 import NeasForm from "./NeasForm";
 import Detail from "./Detail";
 import NeasDetail from "./NeasDetail";
+import SignUp from "./SignUp";
+import Login from "./Login";
 import {Route, Routes} from "react-router-dom";
 import { themeContext } from "../../context/themeContext";
 
@@ -26,6 +28,8 @@ function Main () {
           <Route element={<NeasForm/>} path="/neas/create"/>
           <Route element={<Detail/>} path="landings/detail/:id"/>
           <Route element={<NeasDetail/>} path="neas/detail/:id"/>
+          <Route element={<SignUp/>} path="/signup"/>
+          <Route element={<Login/>} path="/login"/>
         </Routes>
       </main>
     )

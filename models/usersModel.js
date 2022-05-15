@@ -11,7 +11,10 @@ const getAllUsers = async() =>{
 }
 
 
-const createUser = async(user) =>{
+const createUser = async(name,hashPassword,email) =>{
+    const password = hashPassword;
+    const user = {name, password, email}
+    console.log(user);
     try {
         const newUser = new usersSchema(user);
         await usersSchema.create(newUser);
