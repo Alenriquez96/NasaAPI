@@ -19,3 +19,19 @@
     width: 70%;
     line-height: 1.8;
 }
+
+#idvLogin{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#idvLogin>button>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}

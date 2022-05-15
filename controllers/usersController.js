@@ -4,6 +4,7 @@ const config = require("../configs/config");
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const { v4: uuidv4 } = require('uuid');
+require("../configs/auth");
 require('dotenv').config();
 
 const getAllUsers = async(req,res) =>{
@@ -93,46 +94,18 @@ const googleAuth = passport.authenticate("google", { scope: ['email', 'profile']
 const googleCallBack = passport.authenticate('google', { failureRedirect: '/auth/failure' });
 const googleToken = async (req,res)=>{
     const users = await usersModel.getAllUsers();
+    console.log(users);
+    console.log(req.user);
     const user = users.find(u => { return req.user.emails[0].value === u.email });
     if (user) {
         const name = req.user.name.givenName;
         const img = req.user.photos[0].value;
-        
-        // const payload = {
-        //     email: user.email,
-        //     check: true
-        // };
-        // const token = jwt.sign(payload, config.llave, {
-        //     expiresIn: "20m"
-        // });
-        res
-        // .cookie("access-token", token, {
-        //     httpOnly: true,
-        //     sameSite: "strict",
-        // })
-        .json({message:"logged with google",name:name, img:img});
+        res.status(200).redirect("http://localhost:3001");
     }
     else {
         const passRandom = "A$"+uuidv4();
-        const newUser = { 
-            name: req.user.name.givenName,  
-            email: req.user.emails[0].value,
-            password: passRandom,
-        }; 
-        await usersModel.createUser(newUser);
-        // const payload = {
-        //     email: newUser.email,
-        //     check: true
-        // };
-        // const token = jwt.sign(payload, config.llave, {
-        //     expiresIn: "20m"
-        // });
-        res
-        // .cookie("access-token", token, {
-        //     httpOnly: true,
-        //     sameSite: "strict",
-        // })
-        .status(201).json({message:"logged with google"});
+        await usersModel.createUser(req.user.name.givenName,passRandom,req.user.emails[0].value);
+        res.status(201).json({message:"user created with google"});
     }
 }
 

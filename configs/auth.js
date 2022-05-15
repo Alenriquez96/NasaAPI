@@ -1,11 +1,11 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+require('dotenv').config();
 
-//TODO: Esto al .env?
 passport.use(new GoogleStrategy({
     clientID: `${process.env.CLIENT_ID}`,
     clientSecret: `${process.env.CLIENT_SECRET}`,
-    callbackURL: `http://localhost:3001/google/callBack` || "http://localhost:3000/google/callBack",
+    callbackURL: "http://localhost:3000/api/astronomy/google/callBack" || `http://localhost:3001/google/callBack`,
     proxy: true 
   },
   function(request, accessToken, refreshToken, profile, done) {

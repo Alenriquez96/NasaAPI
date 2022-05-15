@@ -2,10 +2,14 @@ import React, {useContext} from "react";
 import Nav from "./Nav";
 import logo from "../../assets/nasa.png"
 import { themeContext } from '../../context/themeContext';
+import { userContext } from "../../context/userContext";
 import Switch from '@mui/material/Switch';
 import { styled } from '@mui/material/styles';
 import logoIcon from "../../assets/login.svg";
 import { Link } from "react-router-dom";
+import Popup from 'reactjs-popup';
+import Button from '@mui/material/Button';
+
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -56,6 +60,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 function Header () {
   const {theme, toggleTheme } = useContext(themeContext);
+  const {user, logout} = useContext(userContext);
   const darkMode = "header"+theme;
 
   
@@ -67,7 +72,11 @@ function Header () {
           <button className="btnMode" onClick={toggleTheme}>        
             {<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
           </button>
-          <Link to="/signup" title="Sign Up"><img className="loginIcon" src={logoIcon} alt="login icon"/></Link>
+          {user?
+          <Popup className="popupLogin" trigger={<Button id="logoutBtn" variant="contained" size="small">{user}</Button>} position="bottom left">
+          {close => (<Button onClick={logout}>Logout</Button>
+          )}
+          </Popup>: <Link to="/signup" title="Sign Up"><img className="loginIcon" src={logoIcon} alt="login icon"/></Link>}
         </div>
       </header>
     )

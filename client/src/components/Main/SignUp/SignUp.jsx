@@ -30,8 +30,16 @@ const SignUp = () => {
     }
   }
 
+  // const handleLogin = async() =>{
+  //   try {
+  //     const res = await axios.post("http://localhost:3000/api/astronomy/auth/google")
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
   return (
-    <div>
+    <div id="idvLogin">
       <form onSubmit={handleSubmit(createUser)}>
         <Card sx={{ maxWidth: 345 }}>
           <CardContent className="form">
@@ -44,8 +52,8 @@ const SignUp = () => {
         </Card>
       </form>
       <h3>Already registered? Go to login screen...</h3>
-      <Button><Link to="/login">Log In</Link></Button>
-      <Button><Link to="/auth/google">Log In</Link></Button>
+      <Button variant="outlined"><Link to="/login">Log In</Link></Button>
+      <Button><a href="http://localhost:3000/api/astronomy/auth/google"><img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Login with google"/>Login with Google</a></Button>
       {isRegistered===true?
         <div>
           <Alert severity="success">User registered succesfully!</Alert>

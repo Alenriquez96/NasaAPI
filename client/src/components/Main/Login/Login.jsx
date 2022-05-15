@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React,{ useContext, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -8,9 +8,11 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Cookies from 'universal-cookie';
+import { userContext } from "../../../context/userContext";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
+  const {login} = useContext(userContext);
   const [isLogged, setIsLogged] = useState(false);
   const [isNotLogged, setisNotLogged] = useState(false);
   const cookies = new Cookies();
@@ -21,7 +23,8 @@ const Login = () => {
     console.log(data);
     if (data.message==="Correct credentials") {
       setIsLogged(true);
-      setisNotLogged(false)
+      setisNotLogged(false);
+      login(log.email);
       cookies.set("access-token",data.message2);
     } else{
       setisNotLogged(true)
