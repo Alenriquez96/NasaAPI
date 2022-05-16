@@ -18,9 +18,8 @@ const Login = () => {
   const cookies = new Cookies();
 
   const loginUser = async(log)=>{
-    const res = await axios.post("http://localhost:3000/api/astronomy/users/login",log)
+    const res = await axios.post("http://localhost:3000/api/astronomy/users/login",log);
     const data = res.data;
-    console.log(data);
     if (data.message==="Correct credentials") {
       setIsLogged(true);
       setisNotLogged(false);
@@ -32,7 +31,7 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className="idvLogin">
       <form onSubmit={handleSubmit(loginUser)}>
         <Card sx={{ maxWidth: 345 }}>
           <CardContent className="form">
@@ -42,6 +41,7 @@ const Login = () => {
           </CardContent>
         </Card>
       </form>
+      <Button><a href="http://localhost:3000/api/astronomy/auth/google"><img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Login with google"/>Login with Google</a></Button>
       {isLogged===true?
         <div>
           <Alert severity="success">User logged succesfully!</Alert>

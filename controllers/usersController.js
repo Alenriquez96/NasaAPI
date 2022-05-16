@@ -94,7 +94,6 @@ const googleAuth = passport.authenticate("google", { scope: ['email', 'profile']
 const googleCallBack = passport.authenticate('google', { failureRedirect: '/auth/failure' });
 const googleToken = async (req,res)=>{
     const users = await usersModel.getAllUsers();
-    console.log(users);
     console.log(req.user);
     const user = users.find(u => { return req.user.emails[0].value === u.email });
     if (user) {

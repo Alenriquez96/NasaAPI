@@ -20,7 +20,7 @@
     line-height: 1.8;
 }
 
-#idvLogin{
+.idvLogin{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -29,7 +29,7 @@
     align-items: center;
 }
 
-#idvLogin>button>a{
+.idvLogin>button>a{
     display: flex;
     justify-content: center;
     align-items: center;

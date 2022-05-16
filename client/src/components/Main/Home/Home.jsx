@@ -3,8 +3,7 @@ import useFetch from "../../hooks/useFetch";
 import CircularProgress from '@mui/material/CircularProgress';
 
 const Home = () => {
-  // const {loading, result} = useFetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}`)
-  const {loading, result} = useFetch(`https://api.nasa.gov/planetary/apod?api_key=nDIbCiboUueGLK5yfznO8tviTyfZmXt3iBSoM2eN`)
+  const {loading, result} = useFetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}`)
   const apod = result;
   
   return (

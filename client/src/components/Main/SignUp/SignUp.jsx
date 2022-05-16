@@ -20,7 +20,6 @@ const SignUp = () => {
       setSamePass(true);
       const res = await axios.post("http://localhost:3000/api/astronomy/users/create", create)
       const data = res.data;
-      console.log(data);
       if (data === "User created succesfully") {
         setIsRegistered(true);
       }     
@@ -30,16 +29,8 @@ const SignUp = () => {
     }
   }
 
-  // const handleLogin = async() =>{
-  //   try {
-  //     const res = await axios.post("http://localhost:3000/api/astronomy/auth/google")
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   return (
-    <div id="idvLogin">
+    <div className="idvLogin">
       <form onSubmit={handleSubmit(createUser)}>
         <Card sx={{ maxWidth: 345 }}>
           <CardContent className="form">
