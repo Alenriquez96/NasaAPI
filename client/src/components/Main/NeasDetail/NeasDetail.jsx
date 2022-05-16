@@ -29,9 +29,9 @@ const NeasDetail = () => {
   return (
     <Card sx={{ maxWidth: 800 }}>
       <CardContent>
-          <Typography>{neasById.designation}</Typography>
+          <Typography>{neasById.orbit_class}</Typography>
           <Typography gutterBottom variant="h5" component="div">
-            {neasById.orbit_class}
+            {neasById.designation}
           </Typography>
           <iframe className="giphy" src="https://giphy.com/embed/VGKtRn5nLfaxr0mI9j" width="281" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
           <Typography variant="body2" color="text.secondary">

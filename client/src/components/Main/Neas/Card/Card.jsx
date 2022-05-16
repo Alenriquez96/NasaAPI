@@ -63,13 +63,13 @@ const CardNeas = (props) => {
     <Card className="cards" sx={{ maxWidth: 345 }}>
       <Link to={`/neas/detail/${neas._id}`}>
         <CardContent>
-          <Typography>{neas.designation}</Typography>
+          <Typography>{neas.orbit_class}</Typography>
           <Typography gutterBottom variant="h5" component="div">
-            {neas.orbit_class}
+            {neas.designation}
           </Typography>
           <img src={shuffledImages[0]} alt="neas icon"/>
           <Typography variant="body2" color="text.secondary">
-          Discovery date: {neas.discovery_date}
+          Discovery date: {neas.discovery_date.slice(0,9)}
           </Typography>
           <Typography>Orbital period: {neas.period_yr}</Typography>
         </CardContent>
@@ -82,12 +82,12 @@ const CardNeas = (props) => {
             <form onSubmit={handleSubmit(updateNea)}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardContent>
-                  <TextField {...register("designation")}  label="Desgination" variant="outlined" name="designation"/>
+                  <TextField {...register("designation")}  label="Desgination" variant="outlined" name="designation" required/>
                   <TextField {...register("discovery_date")}  
                   // label="Discovery Date" 
-                  type="date" variant="outlined" name="discovery_date"/>
+                  type="date" variant="outlined" name="discovery_date" required/>
                   <TextField {...register("period_yr")}  label="Orbit period" variant="outlined"  name="period_yr"/>
-                  <TextField {...register("orbit_class")}  label="Orbit class" variant="outlined" name="orbit_class"/>
+                  <TextField {...register("orbit_class")}  label="Orbit class" variant="outlined" name="orbit_class" required/>
                   <Button size="small" type="submit">Update</Button>
                 </CardContent>
               </Card>

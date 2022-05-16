@@ -4,13 +4,17 @@ import Pagination from '@mui/material/Pagination';
 import CardLanding from "./Card";
 import usePagination from "../../hooks/usePagination";
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 
 
 
 
 const List = () => {
   const [AllLandings, setAllLandings] = useState([]);
-  const [page, setPage] = useState(1); 
+  const [page, setPage] = useState(1);
+  const [name, setname] = useState("");
+  const [landingByName, setlandingByName] = useState([]); 
   const PER_PAGE = 10;
 
   const count = Math.ceil(AllLandings.length / PER_PAGE);
@@ -28,7 +32,7 @@ const List = () => {
         try {
           const defaultValue = await axios.get("http://localhost:3000/api/astronomy/landings");
           const defData = await defaultValue.data;
-          const dataSliced = defData.slice(0,99);
+          const dataSliced = defData;
           setAllLandings(dataSliced);
         }catch(error){
           console.log(error);
@@ -37,16 +41,56 @@ const List = () => {
     fetchData();
   },[]);
 
+  useEffect(() => {
+    const fetchData = async () =>{
+      const encodedName = encodeURIComponent(name);
+      try {
+        const res = await axios.get(`http://localhost:3000/api/astronomy/landings/name/${encodedName}`);
+        const data = res.data;
+        setlandingByName(data)
+      } catch (error) {
+        console.log(error);
+      }
+    } 
+    fetchData();
+  }, [name])
+  
 
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    const name = e.target.name.value;
+    setname(name);
+    e.target.name.value="";
+  }
+
+  const handleClear = (e) =>{
+    e.preventDefault();
+    setlandingByName([]);
+  }
 
   const removeLanding = (i) =>{
     const remainingLandings = AllLandings.filter((landing,j)=>i!==j)
     setAllLandings(remainingLandings);
   }
 
-  function handleSort() {
+  function handleSortName() {
     const sortedData = [...AllLandings].sort((a,b)=>{
-      return a.first > b.first ? 1: -1
+      return a.name > b.name ? 1: -1
+    })
+    setAllLandings(sortedData)
+  }
+
+  function handleSortYear() {
+    const sortedData = [...AllLandings].sort((a,b)=>{
+      return a.year > b.year ? 1: -1
+    })
+    setAllLandings(sortedData)
+  }
+
+  function handleSortMass() {
+    const sortedData = [...AllLandings].sort((a,b)=>{
+      return a.mass > b.mass ? 1: -1
     })
     setAllLandings(sortedData)
   }
@@ -54,18 +98,41 @@ const List = () => {
   if (AllLandings) {
   return (
     <div>
-      <Button onClick={handleSort} variant="outlined">Sort</Button>
-      <Pagination
-          count={count}
-          size="large"
-          color="primary"
-          page={page}
-          variant="outlined"
-          onChange={handleChange}
-          className="muiPag"
-        />
+      <div className="divBotones">
+        <div className="botones">
+          <Button onClick={handleSortName} variant="outlined">Sort by name</Button>
+          <Button onClick={handleSortYear} variant="outlined">Sort by year</Button>
+          <Button onClick={handleSortMass} variant="outlined">Sort by weight</Button>
+        </div>
+        {!landingByName?
+        <form onSubmit={handleSubmit}>
+          <TextField name="name" id="outlined-basic" label="Search by name..." variant="outlined" />
+          <Button type="submit" variant="contained">Search</Button>
+        </form>:
+        <form onSubmit={handleSubmit}>
+          <TextField name="name" id="outlined-basic" label="Search..." variant="outlined" />
+          <Button type="submit" variant="contained">Search</Button>
+          <Button onClick={handleClear} variant="contained">Full list</Button>
+        </form>
+        }
+        
+      </div>
+
       <section>
-        {_DATA.currentData().map((landings,i) =><CardLanding key={i} data={landings} remove={()=>removeLanding(i)}/>)}
+        {landingByName?landingByName.map((landings,i) =><CardLanding key={i} data={landings} remove={()=>removeLanding(i)}/>):
+        <section>
+        <Pagination
+                  count={count}
+                  size="large"
+                  color="primary"
+                  page={page}
+                  variant="outlined"
+                  onChange={handleChange}
+                  className="muiPag"
+                />
+          { _DATA.currentData().map((landings,i) =><CardLanding key={i} data={landings} remove={()=>removeLanding(i)}/>)  }  
+        </section>
+        }
     </section>
     </div>
   )

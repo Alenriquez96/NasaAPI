@@ -53,6 +53,17 @@ const getMass = async (req,res)=>{
     }
 }
 
+const getByName = async (req,res)=>{
+    try{
+        const landingName = await landingsModel.getByName(req.params.name);
+        res.status(200).json(landingName);          
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+
 const getClass = async (req,res) =>{
     try {
         if(req.params.class){
@@ -104,6 +115,7 @@ const landingController = {
     getLandings,
     getMass,
     getById,
+    getByName,
     getClass,
     createLanding,
     updateLanding,

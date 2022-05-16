@@ -53,6 +53,16 @@ const getMass = async (masa) =>{
     }
 }
 
+const getByName = async (n) =>{
+    try{
+        const landingName = await landingSchema.find({name: n}, "-_id");
+        return landingName;            
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
 const getClass = async (clase) => {
     try{
         console.log(clase);
@@ -132,6 +142,7 @@ const landingDB = {
     getLandingById,
     getLandingByMass,
     getMass,
+    getByName,
     getClass,
     getLandingsByYearsFrom,
     getLandingsByYearsTo,

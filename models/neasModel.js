@@ -27,6 +27,15 @@ const getNeasById = async(id) =>{
     }
 }
 
+const getNeasByDesgination = async(des) =>{
+    try {
+        const getDes = await schema.findOne({designation: des },"-_id");
+        return getDes;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const getNeasYears = async(years)=>{
     try {
         console.log(years);
@@ -92,6 +101,7 @@ const exp = {
     getOrbitClass,
     getAllNeas,
     getNeasById,
+    getNeasByDesgination,
     getNeasYears,
     getNeasYearsFrom,
     getNeasYearsTo,

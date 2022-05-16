@@ -78,6 +78,7 @@ const CardLanding = (props) => {
           Mass: {landings.mass}
           </Typography>
           <Typography>Class: {landings.recclass}</Typography>
+          {landings.year?<Typography>Year: {landings.year.slice(0,9)}</Typography>:""}
           <Typography>Latitude: {landings.reclat}</Typography>
           <Typography>Longitude: {landings.reclong}</Typography>
         </CardContent>

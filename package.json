@@ -27,7 +27,6 @@
     "mongoose": "^6.2.10",
     "passport": "^0.5.2",
     "passport-google-oauth20": "^2.0.0",
-    "pug": "^3.0.2",
     "sass": "^1.51.0",
     "uuid": "^8.3.2"
   },

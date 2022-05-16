@@ -49,13 +49,13 @@ const Form = () => {
         {/* Para usar register de react hook form hay que llamar igual al name del input y a lo que le pasas por register */}
         <Card sx={{ maxWidth: 345 }}>
           <CardContent className="form">
-            <TextField {...register("name")}  label="Name" variant="outlined" name="name"/>
-            <TextField {...register("id")}  label="ID" variant="outlined" name="id"/>
-            <TextField {...register("recclass")}  label="Class" variant="outlined"  name="recclass"/>
-            <TextField {...register("year")} variant="outlined" type="date"  name="year"/>
-            <TextField {...register("mass")}  label="Weight" variant="outlined" name="mass"/>
-            <TextField {...register("reclat")}  label="Latitude" variant="outlined" name="reclat"/>
-            <TextField {...register("reclong")}  label="Longitude" variant="outlined" name="reclong"/>
+            <TextField {...register("name")}  label="Name" variant="outlined" name="name" required/>
+            <TextField {...register("id")}  label="ID" variant="outlined" name="id" required/>
+            <TextField {...register("recclass")}  label="Class" variant="outlined"  name="recclass" required/>
+            <TextField {...register("year")} variant="outlined" type="date"  name="year" required/>
+            <TextField {...register("mass")}  label="Weight" variant="outlined" name="mass" required/>
+            <TextField {...register("reclat")}  label="Latitude" variant="outlined" name="reclat" required/>
+            <TextField {...register("reclong")}  label="Longitude" variant="outlined" name="reclong" required/>
             <Button size="small" type="submit">Submit</Button>
           </CardContent>
         </Card>
