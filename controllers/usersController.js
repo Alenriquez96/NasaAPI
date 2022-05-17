@@ -4,6 +4,7 @@ const config = require("../configs/config");
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const { v4: uuidv4 } = require('uuid');
+const regex = require("../utils/regex");
 require("../configs/auth");
 require('dotenv').config();
 
@@ -19,21 +20,29 @@ const getAllUsers = async(req,res) =>{
 const createUser = async(req,res) =>{
     const {name, password, pass2, email} = req.body;
     console.log(req.body);
-    if (password===pass2) {
-        const hashPassword = await bcrypt.hash(password, 10);
-        if (req.body) {
-            try {
-                await usersModel.createUser(name,hashPassword,email);
-                res.status(200).json("User created succesfully");
-            } catch (error) {
-                res.status(400).json({ message: error });
-            }       
-        } else{
-            res.status(400).json({ message: 'Data not provided' });
-        }        
-    } else{
-        res.status(403).json({ message: 'Passwords dont match' });
-    }
+    if (req.body) {
+        if (regex.validateEmail(email)) {
+            if (regex.validatePassword(password)) {
+                    if (password===pass2) {
+                        const hashPassword = await bcrypt.hash(password, 10);
+                            try {
+                                await usersModel.createUser(name,hashPassword,email);
+                                res.status(200).json("User created succesfully");
+                            } catch (error) {
+                                res.status(400).json({ message: error });
+                            }       
+                    } else{
+                        res.status(403).json('Passwords dont match');
+                    }           
+                } else{
+                    res.status(403).json("Password too weak");
+                }
+        } else {
+            res.status(403).json("Email too weak");
+        } 
+    } else {
+        res.status(400).json('Data not provided' );
+    }       
 }
 
 const loginUser = async(req, res) =>{

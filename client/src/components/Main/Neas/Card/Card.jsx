@@ -76,7 +76,7 @@ const CardNeas = (props) => {
       </Link>
       <CardContent>
        <Button size="small" onClick={removeNea}>Delete</Button>
-       <Popup trigger={<Button size="small">Update</Button>} position="top left">
+       <Popup className="cardPopup" trigger={<Button size="small">Update</Button>} position="top left">
         {close => (
           <div >
             <form onSubmit={handleSubmit(updateNea)}>

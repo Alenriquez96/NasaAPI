@@ -87,7 +87,7 @@ const CardLanding = (props) => {
       <Button size="small" onClick={removeLanding}>Delete</Button>
       
 
-      <Popup trigger={<Button size="small">Update</Button>} position="bottom left">
+      <Popup className="cardPopup" trigger={<Button size="small">Update</Button>} position="bottom left">
         {close => (
           <div id="divPopup">
             <form onSubmit={handleSubmit(updateLanding)}>

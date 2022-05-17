@@ -36,7 +36,7 @@ const Login = () => {
         <Card sx={{ maxWidth: 345 }}>
           <CardContent className="form">
             <TextField {...register("email")} name="email" type="text" label="email"/>
-            <TextField {...register("password")} name="password" type="text" label="Password"/>
+            <TextField {...register("password")} name="password" type="password" label="Password"/>
             <Button size="small" type="submit" value="Submit">Login</Button>
           </CardContent>
         </Card>
@@ -48,7 +48,7 @@ const Login = () => {
           <Link to="/"><Button>Go to home screen</Button></Link>
         </div>
         :""}
-      {isNotLogged===true?<Alert severity="error">"Incorrect credentials"</Alert>:""}
+      {isNotLogged===true?<Alert severity="error">Incorrect credentials</Alert>:""}
     </div>
   )
 };

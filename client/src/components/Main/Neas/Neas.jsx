@@ -124,8 +124,7 @@ const Neas = () => {
           <Button onClick={handleClear} variant="contained">Full list</Button>
         </form>}
       </div>
-      {neasByDesignation?neasByDesignation.map((nea, i)=>
-      <Card key={i} data={nea} remove={()=>removeNea(i)}/>)
+      {neasByDesignation?neasByDesignation.map((nea, i)=><Card key={i} data={nea} remove={()=>removeNea(i)}/>)
       :
       <section>
         <Pagination
@@ -147,10 +146,8 @@ const Neas = () => {
           <h4>Or create your own NEA!</h4>
           <Button onClick={routeChange} variant="outlined" type="submit">Create</Button>
         </div>
-      </section>
-      }
+      </section>}
     </div>
-
   )
 }
 }
