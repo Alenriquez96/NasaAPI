@@ -33,12 +33,30 @@ const getNeas = async(req,res)=>{
     }
 }
 
+const getNeasById = async(req,res)=>{
+    try {
+        const neasId = await neasModel.getNeasById(req.params.id);
+        res.status(200).json(neasId);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const getNeasByDesgination = async(req,res)=>{
+    try {
+        const neasDes = await neasModel.getNeasByDesgination(req.params.designation);
+        res.status(200).json(neasDes);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 const createNea = async (req, res) => {
     if (req.body) {
         try {
             await neasModel.createNea(req.body);
-            res.status(201).json({ message: 'Nea creada correctamente' });
+            res.status(201).json('Nea creada correctamente');
         }
         catch (error) {
             res.status(400).json({ message: error });
@@ -73,6 +91,8 @@ const deleteNeas = async (req,res)=>{
 
 const exp = {
     getNeas,
+    getNeasById,
+    getNeasByDesgination,
     createNea,
     updateNea,
     deleteNeas

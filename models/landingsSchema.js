@@ -8,6 +8,7 @@ const landingSchema = new mongoose.Schema({
     },
     id: {
         type: Number,
+        unique: true
     },
     nametype: {
         type: String,
