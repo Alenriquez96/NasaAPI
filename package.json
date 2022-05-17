@@ -8,9 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "webpack --config=Scripts/config/webpack.dev.js --watch",
-    "build": "webpack --config=Scripts/config/webpack.prod.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -33,7 +31,6 @@
     "passport": "^0.5.2",
     "passport-google-oauth20": "^2.0.0",
     "sass": "^1.51.0",
-    "uninstall": "^0.0.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
