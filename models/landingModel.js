@@ -13,6 +13,15 @@ const getAllLandings = async () => {
     }
 }
 
+const getLandingById = async (id) => {
+    try {
+        const landingById = await landingSchema.findOne({id: id}, "-_id");
+        return landingById;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const getLandingByMass = async (minimum_mass) => {
     try{
         if(minimum_mass){
@@ -36,8 +45,18 @@ const getLandingByMass = async (minimum_mass) => {
 const getMass = async (masa) =>{
     try{
         console.log(masa);
-        const landingMass = await landingSchema.find({mass: masa}, "name mass -_id");
+        const landingMass = await landingSchema.find({mass: masa}, "-_id");
         return landingMass;            
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+const getByName = async (n) =>{
+    try{
+        const landingName = await landingSchema.find({name: n}, "-_id");
+        return landingName;            
     }
     catch(error){
         console.log(error);
@@ -47,7 +66,7 @@ const getMass = async (masa) =>{
 const getClass = async (clase) => {
     try{
         console.log(clase);
-        const landingClass = await landingSchema.find({recclass: clase}, "name recclass -_id");
+        const landingClass = await landingSchema.find({recclass: clase}, "-_id");
         return landingClass;
     } 
     catch (error) {
@@ -120,8 +139,10 @@ const deleteLanding = async (id)=>{
 
 const landingDB = {
     getAllLandings,
+    getLandingById,
     getLandingByMass,
     getMass,
+    getByName,
     getClass,
     getLandingsByYearsFrom,
     getLandingsByYearsTo,
