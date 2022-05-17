@@ -33,7 +33,7 @@ const Form = () => {
 
     console.log(newLandingObj);
 
-    const res = await axios.post("http://localhost:3000/api/astronomy/landings/create",newLandingObj);
+    const res = await axios.post("https://nasa-app-node-react.herokuapp.com/api/astronomy/landings/create",newLandingObj);
     const data = res.data;
     console.log(data);
     if (data === "Landing created") {

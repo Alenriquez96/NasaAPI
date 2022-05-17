@@ -28,7 +28,7 @@ const CardNeas = (props) => {
     const encodedNea = encodeURIComponent(neas.designation);
     console.log(encodedNea);
     try {
-      const res = await axios.delete(`http://localhost:3000/api/astronomy/neas/delete/${encodedNea}`);
+      const res = await axios.delete(`https://nasa-app-node-react.herokuapp.com/api/astronomy/neas/delete/${encodedNea}`);
       const data = await res.data;
       console.log(data);
       props.remove();     
@@ -50,7 +50,7 @@ const CardNeas = (props) => {
       console.log(newNeaObj);
       const encodedNea = encodeURIComponent(neas.designation);
       console.log(encodedNea);
-      const res = await axios.put(`http://localhost:3000/api/astronomy/neas/edit/${encodedNea}`, newNeaObj);
+      const res = await axios.put(`https://nasa-app-node-react.herokuapp.com/api/astronomy/neas/edit/${encodedNea}`, newNeaObj);
       const data = await res.data;
       console.log(data);
     } catch (error) {

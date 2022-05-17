@@ -32,7 +32,7 @@ const Detail = () => {
   useEffect(() => {
     const fetchData = async () =>{
       try {
-        const value = await axios.get(`http://localhost:3000/api/astronomy/landings/${id}`);
+        const value = await axios.get(`https://nasa-app-node-react.herokuapp.com/api/astronomy/landings/${id}`);
         const data = await value.data;
         setLandingById(data);
       }catch(error){

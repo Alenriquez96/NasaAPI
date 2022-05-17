@@ -30,7 +30,7 @@ const CardLanding = (props) => {
 
   const removeLanding = async () =>{
     try {
-      const res = await axios.delete(`http://localhost:3000/api/astronomy/landings/delete/${landings.id}`);
+      const res = await axios.delete(`https://nasa-app-node-react.herokuapp.com/api/astronomy/landings/delete/${landings.id}`);
       const data = await res.data;
       console.log(data);
       console.log(landings.id);
@@ -56,7 +56,7 @@ const CardLanding = (props) => {
         }
       };
       console.log(newLandingObj);
-      const res = await axios.put(`http://localhost:3000/api/astronomy/landings/edit/${landings.id}`, newLandingObj);
+      const res = await axios.put(`https://nasa-app-node-react.herokuapp.com/api/astronomy/landings/edit/${landings.id}`, newLandingObj);
       const data = await res.data;
       console.log(data);
     } catch (error) {

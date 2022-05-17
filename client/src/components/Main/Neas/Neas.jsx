@@ -29,7 +29,7 @@ const Neas = () => {
   useEffect(() => {
     const fetchData = async() =>{
     try{
-      const res = await axios.get("http://localhost:3000/api/astronomy/neas");
+      const res = await axios.get("https://nasa-app-node-react.herokuapp.com/api/astronomy/neas");
       const data = res.data;
       setNeas(data);
     }
@@ -45,7 +45,7 @@ const Neas = () => {
     const fetchData = async () =>{
       const encodedDesignation = encodeURIComponent(designation);
       try {
-        const res = await axios.get(`http://localhost:3000/api/astronomy/neas/designation/${encodedDesignation}`);
+        const res = await axios.get(`https://nasa-app-node-react.herokuapp.com/api/astronomy/neas/designation/${encodedDesignation}`);
         const data = res.data;
         setneasByDesignation(data);
       } catch (error) {

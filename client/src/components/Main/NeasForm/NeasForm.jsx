@@ -23,7 +23,7 @@ const NeasForm = () => {
     console.log(newNeaObj);
 
     const res = await axios.post(
-      "http://localhost:3000/api/astronomy/neas/create",
+      "https://nasa-app-node-react.herokuapp.com/api/astronomy/neas/create",
       newNeaObj
     );
     const data = res.data;

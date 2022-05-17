@@ -30,7 +30,7 @@ const List = () => {
     () => {
       const fetchData = async () =>{
         try {
-          const defaultValue = await axios.get("http://localhost:3000/api/astronomy/landings");
+          const defaultValue = await axios.get("https://nasa-app-node-react.herokuapp.com/api/astronomy/landings");
           const defData = await defaultValue.data;
           const dataSliced = defData;
           setAllLandings(dataSliced);
@@ -45,7 +45,7 @@ const List = () => {
     const fetchData = async () =>{
       const encodedName = encodeURIComponent(name);
       try {
-        const res = await axios.get(`http://localhost:3000/api/astronomy/landings/name/${encodedName}`);
+        const res = await axios.get(`https://nasa-app-node-react.herokuapp.com/api/astronomy/landings/name/${encodedName}`);
         const data = res.data;
         setlandingByName(data)
       } catch (error) {

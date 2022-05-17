@@ -36,7 +36,7 @@ const Landings = () => {
     () => {
       const fetchData = async () =>{
         try {
-          const defaultValue = await axios.get("http://localhost:3000/api/astronomy/landings");
+          const defaultValue = await axios.get("https://nasa-app-node-react.herokuapp.com/api/astronomy/landings");
           const defData = await defaultValue.data;
           const dataSliced = defData.slice(0,300);
           setDefaultLandings(dataSliced);
@@ -51,7 +51,7 @@ const Landings = () => {
   useEffect(() => {
     const fetchData = async () =>{
       try {
-        const res = await axios.get(`http://localhost:3000/api/astronomy/landings/${select}/${option}`)
+        const res = await axios.get(`https://nasa-app-node-react.herokuapp.com/api/astronomy/landings/${select}/${option}`)
         const data =  await res.data;
         setLandings(data)
   

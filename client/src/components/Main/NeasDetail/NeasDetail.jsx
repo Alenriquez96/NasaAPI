@@ -15,7 +15,7 @@ const NeasDetail = () => {
   useEffect(() => {
     const fetchData = async () =>{
       try {
-        const value = await axios.get(`http://localhost:3000/api/astronomy/neas/${id}`);
+        const value = await axios.get(`https://nasa-app-node-react.herokuapp.com/api/astronomy/neas/${id}`);
         const data = await value.data;
         setNeasById(data);
       }catch(error){

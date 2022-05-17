@@ -24,7 +24,7 @@ const SignUp = () => {
         setEmailOk(true);
         setPassOk(true);
         setDataProvidedOk(true);
-        const res = await axios.post("http://localhost:3000/api/astronomy/users/create", create)
+        const res = await axios.post("https://nasa-app-node-react.herokuapp.com/api/astronomy/users/create", create)
         const data = res.data;
         if (data === "User created succesfully") {
           setIsRegistered(true);
@@ -67,7 +67,7 @@ const SignUp = () => {
       {dataProvidedOk===false?<Alert severity="error">Data not provided, please complete all the fields. </Alert>:""}     
       <h3>Already registered? Go to login screen...</h3>
       <Button variant="outlined"><Link to="/login">Log In</Link></Button>
-      <Button><a href="http://localhost:3000/api/astronomy/auth/google"><img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Login with google"/>Login with Google</a></Button>
+      <Button><a href="https://nasa-app-node-react.herokuapp.com/api/astronomy/auth/google"><img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Login with google"/>Login with Google</a></Button>
      
     </div>
   )
