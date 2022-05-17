@@ -30,7 +30,7 @@ const Neas = () => {
     const fetchData = async() =>{
     try{
       const res = await axios.get("http://localhost:3000/api/astronomy/neas");
-      const data = await res.data;
+      const data = res.data;
       setNeas(data);
     }
     catch(error){
@@ -124,6 +124,7 @@ const Neas = () => {
           <Button onClick={handleClear} variant="contained">Full list</Button>
         </form>}
       </div>
+    <section>
       {neasByDesignation?neasByDesignation.map((nea, i)=><Card key={i} data={nea} remove={()=>removeNea(i)}/>)
       :
       <section>
@@ -137,16 +138,17 @@ const Neas = () => {
             className="muiPag"
           />
         <div id="neas">
-          {_DATA.currentData().map((nea, i)=><Card key={i} data={nea} 
-          remove={()=>removeNea(i)}
-          />)
-          }
+        {_DATA.currentData().map((nea, i)=><Card key={i} data={nea} 
+        remove={()=>removeNea(i)}
+        />)
+        }
         </div>
         <div className="routeChangeNea">
           <h4>Or create your own NEA!</h4>
           <Button onClick={routeChange} variant="outlined" type="submit">Create</Button>
         </div>
       </section>}
+    </section>
     </div>
   )
 }

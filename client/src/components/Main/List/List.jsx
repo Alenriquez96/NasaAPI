@@ -121,16 +121,16 @@ const List = () => {
       <section>
         {landingByName?landingByName.map((landings,i) =><CardLanding key={i} data={landings} remove={()=>removeLanding(i)}/>):
         <section>
-        <Pagination
-                  count={count}
-                  size="large"
-                  color="primary"
-                  page={page}
-                  variant="outlined"
-                  onChange={handleChange}
-                  className="muiPag"
-                />
-          { _DATA.currentData().map((landings,i) =><CardLanding key={i} data={landings} remove={()=>removeLanding(i)}/>)  }  
+          <Pagination
+                    count={count}
+                    size="large"
+                    color="primary"
+                    page={page}
+                    variant="outlined"
+                    onChange={handleChange}
+                    className="muiPag"
+                  />
+            { _DATA.currentData().map((landings,i) =><CardLanding key={i} data={landings} remove={()=>removeLanding(i)}/>)  }  
         </section>
         }
     </section>

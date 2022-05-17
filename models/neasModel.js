@@ -29,7 +29,7 @@ const getNeasById = async(id) =>{
 
 const getNeasByDesgination = async(des) =>{
     try {
-        const getDes = await schema.findOne({designation: des },"-_id");
+        const getDes = await schema.find({designation: des },"-_id");
         return getDes;
     } catch (error) {
         console.log(error);
