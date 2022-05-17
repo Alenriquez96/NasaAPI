@@ -7,7 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 import { userContext } from "../../../context/userContext";
 
 const Login = () => {
@@ -15,16 +15,18 @@ const Login = () => {
   const {login} = useContext(userContext);
   const [isLogged, setIsLogged] = useState(false);
   const [isNotLogged, setisNotLogged] = useState(false);
-  const cookies = new Cookies();
+  // const cookies = new Cookies();
 
   const loginUser = async(log)=>{
     const res = await axios.post("https://nasa-app-node-react.herokuapp.com/api/astronomy/users/login",log);
     const data = res.data;
+    console.log(data);
     if (data.message==="Correct credentials") {
       setIsLogged(true);
       setisNotLogged(false);
       login(log.email);
-      cookies.set("access-token",data.message2);
+
+      // cookies.set("access-token",data.message2);
     } else{
       setisNotLogged(true)
     }
