@@ -3,6 +3,7 @@ const landingRouter = require("./routes/landingsRoutes");
 const neasRouter = require("./routes/neasRoutes");
 const usersRouter = require("./routes/usersRoutes");
 const app = express();
+const cors = require("cors");
 const port = process.env.PORT || 5000;
 
 
