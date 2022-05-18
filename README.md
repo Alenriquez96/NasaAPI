@@ -1,6 +1,6 @@
-# Ejercicio de Back - NasaAPI
+# [**GO TO THE APP**](https://nasa-app-react-mern.netlify.app)
 
-![img](../../assets/back/ejercicioNasa/astronaut.gif)
+# Ejercicio de Back - NasaAPI
 
 ​
 En este proyecto aplicaremos conceptos de Backend vistos hasta ahora y nos servirá de repaso
